@@ -1,0 +1,1 @@
+ /home/danielekwere/Desktop/flutter\ projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/.dart_tool/flutter_build/ef79358d681dc82e773a4f85a5804406/native_assets.json: 
