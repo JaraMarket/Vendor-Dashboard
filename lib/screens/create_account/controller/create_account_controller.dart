@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:jara_market/data/apiClient/apiClient.dart';
 
 class CreateAccountController extends GetxController {
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
  void processSignUp() {
@@ -11,7 +14,10 @@ class CreateAccountController extends GetxController {
     // For example, you can call an API to create a new account
     // and handle the response accordingly.
     apiClient.onboarding_signup(
+      firstNameController.text,
+      lastNameController.text,
       emailController.text,
+      phoneNumberController.text,
       passwordController.text,
     );
   }

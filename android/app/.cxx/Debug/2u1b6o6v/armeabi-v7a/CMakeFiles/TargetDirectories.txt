@@ -1,0 +1,2 @@
+/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/android/app/.cxx/Debug/2u1b6o6v/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/android/app/.cxx/Debug/2u1b6o6v/armeabi-v7a/CMakeFiles/rebuild_cache.dir

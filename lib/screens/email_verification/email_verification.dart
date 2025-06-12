@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:jara_market/screens/email_verification/controller/email_verification_controller.dart';
+import 'package:jara_market/screens/profile_setup_screen/profile_setup_screen.dart';
 import 'dart:async';
 import '../../widgets/status_bar.dart';
 
 EmailVerificationController controller = Get.put(EmailVerificationController());
-    
+
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
 
@@ -23,15 +25,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   );
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
-  int _resendSeconds = 240; // 4 minutes in seconds
-  Timer? _timer;
-
   var email = Get.arguments['email'];
 
   @override
   void initState() {
     super.initState();
-    _startResendTimer();
+    controller.startResendTimer();
 
     // Set up focus node listeners
     for (int i = 0; i < 4; i++) {
@@ -43,27 +42,15 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     }
   }
 
-  void _startResendTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_resendSeconds > 0) {
-          _resendSeconds--;
-        } else {
-          _timer?.cancel();
-        }
-      });
-    });
-  }
-
   String get _formattedTime {
-    int minutes = _resendSeconds ~/ 60;
-    int seconds = _resendSeconds % 60;
+    int minutes = controller.resendSeconds.value ~/ 60;
+    int seconds = controller.resendSeconds.value % 60;
     return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    controller.timer?.cancel();
     for (var controller in _controllers) {
       controller.dispose();
     }
@@ -136,39 +123,49 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               const SizedBox(height: 40),
               Center(
-                child: TextButton(
-                  onPressed:
-                      _resendSeconds == 0
-                          ? () {
-                            setState(() {
-                              _resendSeconds = 240;
-                              _startResendTimer();
-                            });
-                          }
-                          : null,
+                child: Obx((){
+                  return TextButton(
+                  onPressed: controller.resendSeconds.value == 0
+                      ? () {
+                          setState(() {
+                            controller.resendOtp({"email": email});
+                            //controller.resendSeconds.value = 240;
+                            //controller.startResendTimer();
+                          });
+                        }
+                      : null,
                   child: Text(
                     'Didn\'t Receive Email, Send A New Email',
                     style: TextStyle(
-                      color:
-                          _resendSeconds == 0
-                              ? const Color(0xFFFF9800)
-                              : Colors.grey,
+                      color: controller.resendSeconds.value == 0
+                          ? const Color(0xFFFF9800)
+                          : Colors.grey,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                ),
+                );
+                })
               ),
-              if (_resendSeconds > 0)
-                Center(
-                  child: Text(
-                    'Send new code in $_formattedTime',
-                    style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
-                  ),
-                ),
+              Obx((){
+                return (controller.resendSeconds.value > 0) ?
+                  Center(
+                    child: Text(
+                      'Send new code in $_formattedTime',
+                      style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
+                    ),
+                  ) : SizedBox.shrink();
+              }),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/profile-setup');
+                  print(_controllers.length);
+                  // print(_controllers.toString());
+                  String otp =
+                      _controllers.map((controller) => controller.text).join();
+                  print('OTP:$otp');
+                  controller.verifyEmail({"email": email, "otp": otp});
+                  //Navigator.pushNamed(context, '/profile-setup');
+                  // Navigator.of(context).push(CupertinoPageRoute(builder: (context)=> const ProfileSetupScreen()));
                 },
                 child: const Text('Verify'),
               ),

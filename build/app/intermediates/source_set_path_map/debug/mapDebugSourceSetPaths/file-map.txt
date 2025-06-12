@@ -1,0 +1,27 @@
+com.example.vendor_dashboard.app-fragment-1.7.1-0 /home/danielekwere/.gradle/caches/transforms-4/2a7008b85149f0aa795291f96e282097/transformed/fragment-1.7.1/res
+com.example.vendor_dashboard.app-jetified-annotation-experimental-1.4.0-1 /home/danielekwere/.gradle/caches/transforms-4/442acf5472d3eacfd418b5cd748a47fe/transformed/jetified-annotation-experimental-1.4.0/res
+com.example.vendor_dashboard.app-lifecycle-runtime-2.7.0-2 /home/danielekwere/.gradle/caches/transforms-4/56b0dcd6e5861317ff8547e0fb48d1ac/transformed/lifecycle-runtime-2.7.0/res
+com.example.vendor_dashboard.app-jetified-activity-1.8.1-3 /home/danielekwere/.gradle/caches/transforms-4/9404fe5ee1b9aa04ad1f1f3182ce53cf/transformed/jetified-activity-1.8.1/res
+com.example.vendor_dashboard.app-jetified-lifecycle-viewmodel-savedstate-2.7.0-4 /home/danielekwere/.gradle/caches/transforms-4/a16d50c69ae057872efc26506de4bfd5/transformed/jetified-lifecycle-viewmodel-savedstate-2.7.0/res
+com.example.vendor_dashboard.app-core-1.13.1-5 /home/danielekwere/.gradle/caches/transforms-4/a1e7f3554dbe5c925adf695a71596662/transformed/core-1.13.1/res
+com.example.vendor_dashboard.app-jetified-core-ktx-1.13.1-6 /home/danielekwere/.gradle/caches/transforms-4/a5262d087a8b04dfd52c6c99d75ec817/transformed/jetified-core-ktx-1.13.1/res
+com.example.vendor_dashboard.app-lifecycle-viewmodel-2.7.0-7 /home/danielekwere/.gradle/caches/transforms-4/a7a7f46a029997dc5dbfdee0303257c5/transformed/lifecycle-viewmodel-2.7.0/res
+com.example.vendor_dashboard.app-lifecycle-livedata-core-2.7.0-8 /home/danielekwere/.gradle/caches/transforms-4/b4d15aadd07e51de655b2989ab7c6c1a/transformed/lifecycle-livedata-core-2.7.0/res
+com.example.vendor_dashboard.app-jetified-lifecycle-livedata-core-ktx-2.7.0-9 /home/danielekwere/.gradle/caches/transforms-4/bd2aabce648a6e4afd6267d702e39bdb/transformed/jetified-lifecycle-livedata-core-ktx-2.7.0/res
+com.example.vendor_dashboard.app-jetified-window-java-1.2.0-10 /home/danielekwere/.gradle/caches/transforms-4/c6f26b5a2bd1689f18f2de66595300ff/transformed/jetified-window-java-1.2.0/res
+com.example.vendor_dashboard.app-jetified-core-1.0.0-11 /home/danielekwere/.gradle/caches/transforms-4/d2cd9fdf92b57f71e18367a4347ac1dd/transformed/jetified-core-1.0.0/res
+com.example.vendor_dashboard.app-jetified-profileinstaller-1.3.1-12 /home/danielekwere/.gradle/caches/transforms-4/d4c23dfc33d7ff29f718cad4147d8058/transformed/jetified-profileinstaller-1.3.1/res
+com.example.vendor_dashboard.app-jetified-tracing-1.2.0-13 /home/danielekwere/.gradle/caches/transforms-4/d8e6a697cce9559249e23a500efffd16/transformed/jetified-tracing-1.2.0/res
+com.example.vendor_dashboard.app-jetified-savedstate-1.2.1-14 /home/danielekwere/.gradle/caches/transforms-4/dead63b3f90387638859cb319b3d6952/transformed/jetified-savedstate-1.2.1/res
+com.example.vendor_dashboard.app-jetified-startup-runtime-1.1.1-15 /home/danielekwere/.gradle/caches/transforms-4/e04304e5cf7607cb365e62ddd2a6ce6e/transformed/jetified-startup-runtime-1.1.1/res
+com.example.vendor_dashboard.app-core-runtime-2.2.0-16 /home/danielekwere/.gradle/caches/transforms-4/e8fe8590f59c26251432e2f7f176e31d/transformed/core-runtime-2.2.0/res
+com.example.vendor_dashboard.app-jetified-lifecycle-process-2.7.0-17 /home/danielekwere/.gradle/caches/transforms-4/ee85154cf93ccce24c7908d4a7dd3d2a/transformed/jetified-lifecycle-process-2.7.0/res
+com.example.vendor_dashboard.app-lifecycle-livedata-2.7.0-18 /home/danielekwere/.gradle/caches/transforms-4/eebbd74de088c7184da9f5363d3c91e2/transformed/lifecycle-livedata-2.7.0/res
+com.example.vendor_dashboard.app-jetified-window-1.2.0-19 /home/danielekwere/.gradle/caches/transforms-4/fed100f9bb5e3c9a78af9f56d972e939/transformed/jetified-window-1.2.0/res
+com.example.vendor_dashboard.app-debug-20 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/android/app/src/debug/res
+com.example.vendor_dashboard.app-main-21 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/android/app/src/main/res
+com.example.vendor_dashboard.app-pngs-22 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/app/generated/res/pngs/debug
+com.example.vendor_dashboard.app-resValues-23 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/app/generated/res/resValues/debug
+com.example.vendor_dashboard.app-packageDebugResources-24 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/app/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.vendor_dashboard.app-packageDebugResources-25 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/app/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.vendor_dashboard.app-debug-26 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/app/intermediates/merged_res/debug/mergeDebugResources
