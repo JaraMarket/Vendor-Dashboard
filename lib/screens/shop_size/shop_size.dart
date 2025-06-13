@@ -13,13 +13,13 @@ class ShopSizeScreen extends StatefulWidget {
 }
 
 class _ShopSizeScreenState extends State<ShopSizeScreen> {
-  String? _selectedSize;
+  // String? _selectedSize;
 
   final List<Map<String, String>> _shopSizes = [
-    {'id': 'solo', 'name': 'It\'s just me'},
-    {'id': 'small', 'name': '2-5 people'},
-    {'id': 'medium', 'name': '6-10 people'},
-    {'id': 'large', 'name': '11+ people'},
+    {'id': 'just_me', 'name': 'It\'s just me'},
+    {'id': '2-5', 'name': '2-5 people'},
+    {'id': '6-10', 'name': '6-10 people'},
+    {'id': '11+', 'name': '11+ people'},
   ];
 
   @override
@@ -59,11 +59,11 @@ class _ShopSizeScreenState extends State<ShopSizeScreen> {
                   itemCount: _shopSizes.length,
                   itemBuilder: (context, index) {
                     final size = _shopSizes[index];
-                    final isSelected = _selectedSize == size['id'];
+                    final isSelected = controller.selectedSize.value == size['id'];
 
                     return _buildSizeItem(size['name']!, isSelected, () {
                       setState(() {
-                        _selectedSize = size['id'];
+                        controller.selectedSize.value = size['id']!;
                       });
                     });
                   },
@@ -72,9 +72,10 @@ class _ShopSizeScreenState extends State<ShopSizeScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed:
-                    _selectedSize != null
+                    controller.selectedSize.value.isNotEmpty
                         ? () {
-                          Navigator.pushNamed(context, '/address');
+                         controller.updateVendorProfileBusinessShopSize();
+                         //print(controller.selectedSize.value);
                         }
                         : null,
                 child: const Text('Continue'),

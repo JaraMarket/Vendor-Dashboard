@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
 import 'package:jara_market/screens/product_selection/controller/product_selection_controller.dart';
+import 'package:jara_market/screens/product_selection/models/mdels.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import '../../widgets/status_bar.dart';
 import '../../widgets/back_button.dart';
 
@@ -15,150 +19,221 @@ class ProductSelectionScreen extends StatefulWidget {
 }
 
 class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
-  final List<String> _products = [
-    'Spices',
-    'Protein',
-    'Vegetables',
-    'Cooking Oil',
-    'Grains',
-    'Tuber',
-    'Fruit',
-    'Drinks',
-    'Beverage',
-  ];
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+  void _onrefresh() {
+    controller.fetchCategories();
+  }
 
-  final List<String> _selectedProducts = [];
+  //List<bool> isSelectedIngredient = List.generate(controller.data[0]., generator)
+  // final List<String> _products = [
+  //   'Spices',
+  //   'Protein',
+  //   'Vegetables',
+  //   'Cooking Oil',
+  //   'Grains',
+  //   'Tuber',
+  //   'Fruit',
+  //   'Drinks',
+  //   'Beverage',
+  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const StatusBar(),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  const CustomBackButton(),
-                  const SizedBox(width: 16),
-                  const Text(
-                    'What product do you sell',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Lorem ipsum dolor sit amet consectetur. In met conse',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
-                  height: 1.5,
-                ),
-              ),
-              const SizedBox(height: 24),
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16.0,
-                    mainAxisSpacing: 16.0,
-                    childAspectRatio: 1.5,
-                  ),
-                  itemCount: _products.length + 1, // +1 for "Others" option
-                  itemBuilder: (context, index) {
-                    if (index < _products.length) {
-                      final product = _products[index];
-                      final isSelected = _selectedProducts.contains(product);
+      body: SmartRefresher(
+        controller: _refreshController,
+        onRefresh: _onrefresh,
+        child: SafeArea(child: Obx(() {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: controller.isLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.amber,
+                  ))
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const StatusBar(),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          const CustomBackButton(),
+                          const SizedBox(width: 16),
+                          const Text(
+                            'What product do you sell',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Lorem ipsum dolor sit amet consectetur. In met conse',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey.shade600,
+                          height: 1.5,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      // ElevatedButton(onPressed: (){
+                      //   controller.fetchCategories();
+                      // }, child: Text('fecth cats here')),
+                      Expanded(
+                        child: ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: controller.data.length + 1,
+                          itemBuilder: (context, index) {
+                            if (index < controller.data.length) {
+                              final product = controller.data[index];
+                              final isSelected = controller.selectedProducts
+                                  .contains(product.id);
 
-                      return _buildProductItem(product, isSelected, () {
-                        setState(() {
-                          if (isSelected) {
-                            _selectedProducts.remove(product);
-                          } else {
-                            _selectedProducts.add(product);
-                          }
-                        });
-                      });
-                    } else {
-                      // "Others" option
-                      return _buildOthersItem();
-                    }
-                  },
-                ),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed:
-                    _selectedProducts.isNotEmpty
-                        ? () {
-                          Navigator.pushNamed(context, '/shop-size');
-                        }
-                        : null,
-                child: const Text('Continue'),
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        ),
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                child: _buildProductItem(product, isSelected, () {
+                                  setState(() {
+                                    if (isSelected) {
+                                      controller.selectedProducts
+                                          .remove(product.id);
+                                    } else {
+                                      controller.selectedProducts.add(product.id);
+                                    }
+                                  });
+                                }),
+                              );
+                            } else {
+                              return _buildOthersItem();
+                            }
+                          },
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+                      ElevatedButton(
+                        onPressed: controller.selectedProducts.isNotEmpty
+                            ? () {
+                              //  controller.saveCategory();
+                              Navigator.pushNamed(Get.context!, '/shop-size');
+                                //print(controller.selectedProducts);
+                              }
+                            : null,
+                        child: const Text('Continue'),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+          );
+        })),
       ),
     );
   }
 
   Widget _buildProductItem(
-    String product,
+    Data product,
     bool isSelected,
     VoidCallback onTap,
   ) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? const Color(0xFFFF9800).withAlpha(26) // Changed from withOpacity(0.1)
-                  : Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isSelected ? const Color(0xFFFF9800) : Colors.grey.shade300,
-            width: 1,
-          ),
-        ),
+      child: AnimatedSize(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 50,
-              height: 50,
+              padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color:
-                    isSelected ? const Color(0xFFFF9800) : Colors.grey.shade200,
-                shape: BoxShape.circle,
+                color: isSelected
+                    ? const Color(0xFFFF9800)
+                        .withAlpha(26) // Changed from withOpacity(0.1)
+                    : Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: isSelected
+                      ? const Color(0xFFFF9800)
+                      : Colors.grey.shade300,
+                  width: 1,
+                ),
               ),
-              child: Icon(
-                _getIconForProduct(product),
-                color: isSelected ? Colors.white : Colors.grey.shade600,
-                size: 24,
+              child: Row(
+                spacing: 5,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? const Color(0xFFFF9800)
+                          : Colors.grey.shade200,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      _getIconForProduct(product.name!),
+                      color: isSelected ? Colors.white : Colors.grey.shade600,
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    product.name!,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight:
+                          isSelected ? FontWeight.bold : FontWeight.normal,
+                      color:
+                          isSelected ? const Color(0xFFFF9800) : Colors.black,
+                    ),
+                  ),
+                  if (isSelected)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8.0),
+                      child: Icon(Icons.check_circle, color: Color(0xFFFF9800)),
+                    ),
+                  Spacer(),
+                  isSelected
+                      ? SvgPicture.asset('assets/down.svg')
+                      : SvgPicture.asset('assets/left.svg'),
+                  //Icon(Icons.chevron_right),
+                  SizedBox(
+                    width: 10,
+                  )
+                ],
               ),
             ),
-            const SizedBox(height: 12),
-            Text(
-              product,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? const Color(0xFFFF9800) : Colors.black,
-              ),
-            ),
-            if (isSelected)
-              const Padding(
-                padding: EdgeInsets.only(top: 8.0),
-                child: Icon(Icons.check_circle, color: Color(0xFFFF9800)),
-              ),
+            isSelected
+                ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: product.products!.map((e) {
+                      return Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: Column(
+                          children: [
+                         //  List<bool> selct = List.generate(product.products.length, (value)=> value),
+                            Row(
+                              children: [
+                                Checkbox(value: isSelected, onChanged: (value) {
+                                  
+                                },),
+                                Text(' ${e.name}'),
+                              ],
+                              
+                            ),
+                         //   Divider(),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                  )
+                : SizedBox.shrink(),
+
           ],
         ),
       ),
@@ -176,10 +251,11 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(color: Colors.grey.shade300, width: 1),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
               width: 50,
               height: 50,
               decoration: BoxDecoration(

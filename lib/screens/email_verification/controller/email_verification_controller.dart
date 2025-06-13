@@ -66,7 +66,8 @@ Future<void> verifyEmail(Map<String, String> otpData) async {
           SnackBar(content: Text('Success: \n${message}'),backgroundColor: Colors.green,),
         );
         // Get.offAllNamed('/login_screen');
-        Navigator.of(Get.context!).push(CupertinoPageRoute(builder: (context)=> const ProfileSetupScreen()));
+        //Navigator.of(Get.context!).push(CupertinoPageRoute(builder: (context)=> const ProfileSetupScreen()));
+        Navigator.pushNamed(Get.context!, '/business-name');
         
       } else {
         OverlayLoadingProgress.stop();

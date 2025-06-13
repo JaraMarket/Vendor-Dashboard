@@ -16,12 +16,12 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
-  final TextEditingController _addressController = TextEditingController();
+  
   bool _noPhysicalAddress = false;
 
   @override
   void dispose() {
-    _addressController.dispose();
+    controller.addressController.dispose();
     super.dispose();
   }
 
@@ -63,7 +63,12 @@ class _AddressScreenState extends State<AddressScreen> {
               ),
               const SizedBox(height: 16),
               TextField(
-                controller: _addressController,
+                onChanged: (value) {
+                  setState(() {
+                    
+                  });
+                },
+                controller: controller.addressController,
                 decoration: const InputDecoration(
                   hintText: 'Enter your business address',
                   border: OutlineInputBorder(),
@@ -80,7 +85,7 @@ class _AddressScreenState extends State<AddressScreen> {
                       setState(() {
                         _noPhysicalAddress = value ?? false;
                         if (_noPhysicalAddress) {
-                          _addressController.clear();
+                          controller.addressController.clear();
                         }
                       });
                     },
@@ -97,9 +102,10 @@ class _AddressScreenState extends State<AddressScreen> {
               const Spacer(),
               ElevatedButton(
                 onPressed:
-                    (_noPhysicalAddress || _addressController.text.isNotEmpty)
+                    (_noPhysicalAddress || controller.addressController.text.isNotEmpty)
                         ? () {
-                          Navigator.pushNamed(context, '/payment-method');
+                      //    Navigator.pushNamed(context, '/payment-method');
+                      controller.updateVendorProfileBusinessAddress();
                         }
                         : null,
                 child: const Text('Continue'),

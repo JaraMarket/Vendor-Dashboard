@@ -110,6 +110,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "flutter_svg",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///home/danielekwere/snap/flutter/common/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -200,6 +206,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "mime",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/mime-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "overlay_kit",
       "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/overlay_kit-1.1.2",
       "packageUri": "lib/",
@@ -210,6 +222,12 @@
       "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/path-1.9.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/path_parsing-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
     },
     {
       "name": "path_provider_linux",
@@ -250,6 +268,12 @@
     {
       "name": "posix",
       "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/posix-6.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "pull_to_refresh_flutter3",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/pull_to_refresh_flutter3-2.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -344,6 +368,24 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "vector_graphics",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/vector_graphics-1.1.19",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "vector_graphics_codec",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "vector_graphics_compiler",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/vector_math-2.1.4",
       "packageUri": "lib/",
@@ -386,7 +428,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-06-12T13:11:23.609594Z",
+  "generated": "2025-06-13T15:04:42.263634Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///home/danielekwere/snap/flutter/common/flutter",

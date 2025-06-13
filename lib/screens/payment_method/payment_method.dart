@@ -81,13 +81,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                             icon: Icons.credit_card,
                             iconColor: Colors.white,
                             iconBackground: Colors.green,
-                            description: 'Lorem ipsum dolor sit a me tconsectetur. In ele me nt',
+                            description: 'Lorem ipsum dolor sit a me.',
                             features: [
                               'Lorem ipsum dolor sit a',
                               'Lorem ipsum dolor sit a',
                               'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
+                              // 'Lorem ipsum dolor sit a',
+                              // 'Lorem ipsum dolor sit a',
                             ],
                             isSelected: _selectedPaymentMethod == 'online',
                             onTap: () {
@@ -107,13 +107,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                             icon: Icons.cloud_outlined,
                             iconColor: Colors.white,
                             iconBackground: Colors.orange,
-                            description: 'Lorem ipsum dolor sit a me tconsectetur. In ele me nt',
+                            description: 'Lorem ipsum dolor sit a me.',
                             features: [
                               'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a met consectetur. In eleL',
                               'Lorem ipsum dolor sit a',
                               'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
+                              // 'Lorem ipsum dolor sit a',
+                              // 'Lorem ipsum dolor sit a',
                             ],
                             isSelected: _selectedPaymentMethod == 'offline',
                             onTap: () {
@@ -194,6 +194,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        //height: 410,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           border: Border.all(

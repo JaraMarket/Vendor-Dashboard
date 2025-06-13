@@ -10,7 +10,9 @@
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/google_logo.png
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/logo.png
+/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/left.svg
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/apple_logo.png
+/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/down.svg
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/fonts/Mont-HeavyDEMO.otf
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/fonts/Mont-ExtraLightDEMO.otf
 /home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/build/linux/x64/debug/bundle/data/flutter_assets/assets/facebook_logo.png

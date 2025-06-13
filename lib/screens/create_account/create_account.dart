@@ -263,6 +263,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   child: const Text('Sign Up'),
                 ),
                 const SizedBox(height: 24),
+                ElevatedButton(onPressed: (){
+                  Navigator.pushNamed(context, '/business-name');
+                }, child: Text('tap here')),
                 const Row(
                   children: [
                     Expanded(child: Divider()),

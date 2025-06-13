@@ -1,54 +1,80 @@
 # ninja log v5
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/libflutter_linux_gtk.so	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_engine.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_value.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_view.h	43589d698eb471bf
-0	41412	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	43589d698eb471bf
-0	41412	0	flutter/_phony_	43589d698eb471bf
-41419	46183	1749643055964442993	runner/CMakeFiles/jaramarket_vendor.dir/__/flutter/generated_plugin_registrant.cc.o	9ad8afe1318510f2
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	43589d698eb471bf
+191731	202274	1749815131274251827	intermediates_do_not_run/jaramarket_vendor	1139d1e42f2b70e3
 41413	46527	1749643056306453644	runner/CMakeFiles/jaramarket_vendor.dir/main.cc.o	27848f4978ff6cef
-41418	46770	1749643056548461192	runner/CMakeFiles/jaramarket_vendor.dir/my_application.cc.o	198c7f4f71788fce
-46771	48496	1749643058278515794	intermediates_do_not_run/jaramarket_vendor	c4b9cc319db32097
-48496	49034	0	CMakeFiles/install.util	6391160425686eb9
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/libflutter_linux_gtk.so	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_engine.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_value.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_view.h	43589d698eb471bf
-122	29069	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	43589d698eb471bf
-122	29069	0	flutter/_phony_	43589d698eb471bf
-29071	38987	1749728914475013772	runner/CMakeFiles/jaramarket_vendor.dir/__/flutter/generated_plugin_registrant.cc.o	9ad8afe1318510f2
-29070	39159	1749728914647538374	runner/CMakeFiles/jaramarket_vendor.dir/my_application.cc.o	198c7f4f71788fce
-39159	43772	1749728919265455220	intermediates_do_not_run/jaramarket_vendor	1139d1e42f2b70e3
-43772	44207	0	CMakeFiles/install.util	6391160425686eb9
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	43589d698eb471bf
+99870	191730	1749815120725687069	runner/CMakeFiles/jaramarket_vendor.dir/my_application.cc.o	198c7f4f71788fce
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_value.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	43589d698eb471bf
+102	99110	0	flutter/_phony_	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_view.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/libflutter_linux_gtk.so	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	43589d698eb471bf
+202274	203575	0	CMakeFiles/install.util	6391160425686eb9
+99871	190205	1749815119202605525	runner/CMakeFiles/jaramarket_vendor.dir/__/flutter/generated_plugin_registrant.cc.o	9ad8afe1318510f2
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_engine.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	43589d698eb471bf
+102	99110	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/libflutter_linux_gtk.so	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_engine.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_value.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_view.h	43589d698eb471bf
+99	41073	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	43589d698eb471bf
+99	41073	0	flutter/_phony_	43589d698eb471bf
+41074	45560	1749823186921045300	runner/CMakeFiles/jaramarket_vendor.dir/__/flutter/generated_plugin_registrant.cc.o	9ad8afe1318510f2
+41073	45722	1749823187082964300	runner/CMakeFiles/jaramarket_vendor.dir/my_application.cc.o	198c7f4f71788fce
+45723	47176	1749823188540235303	intermediates_do_not_run/jaramarket_vendor	1139d1e42f2b70e3
+47176	47646	0	CMakeFiles/install.util	6391160425686eb9
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/libflutter_linux_gtk.so	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_engine.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_call.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_method_response.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_value.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/fl_view.h	43589d698eb471bf
+115	50980	0	/home/danielekwere/Desktop/flutter projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/linux/flutter/ephemeral/flutter_linux/flutter_linux.h	43589d698eb471bf
+115	50980	0	flutter/_phony_	43589d698eb471bf
+50985	56043	1749833780467879002	runner/CMakeFiles/jaramarket_vendor.dir/__/flutter/generated_plugin_registrant.cc.o	9ad8afe1318510f2
+50981	56205	1749833780637963101	runner/CMakeFiles/jaramarket_vendor.dir/my_application.cc.o	198c7f4f71788fce
+56205	57853	1749833782291739542	intermediates_do_not_run/jaramarket_vendor	1139d1e42f2b70e3
+57853	58243	0	CMakeFiles/install.util	6391160425686eb9

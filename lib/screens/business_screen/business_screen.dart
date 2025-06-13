@@ -14,11 +14,11 @@ class BusinessNameScreen extends StatefulWidget {
 }
 
 class _BusinessNameScreenState extends State<BusinessNameScreen> {
-  final TextEditingController _businessNameController = TextEditingController();
+  // final TextEditingController _businessNameController = TextEditingController();
 
   @override
   void dispose() {
-    _businessNameController.dispose();
+    // _businessNameController.dispose();
     super.dispose();
   }
 
@@ -60,7 +60,7 @@ class _BusinessNameScreenState extends State<BusinessNameScreen> {
               ),
               const SizedBox(height: 8),
               TextField(
-                controller: _businessNameController,
+                controller: controller.businessNameController,
                 decoration: const InputDecoration(
                   hintText: 'Enter your business name',
                   border: OutlineInputBorder(),
@@ -69,7 +69,7 @@ class _BusinessNameScreenState extends State<BusinessNameScreen> {
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/product-selection');
+                  controller.updateVendorProfileBusinessName();
                 },
                 child: const Text('Continue'),
               ),

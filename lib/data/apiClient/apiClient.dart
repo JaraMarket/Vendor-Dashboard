@@ -8,6 +8,7 @@ import 'package:get/get_connect/connect.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:jara_market/utils/snackbar_utils.dart';
+import 'package:jara_market/utils/storage.dart';
 import 'dart:developer' as myLog;
 
 import 'package:overlay_kit/overlay_kit.dart';
@@ -188,6 +189,9 @@ Future<http.Response> _retryRequest(
        OverlayLoadingProgress.stop();
 
       //  unawaited(loginOneSignalUser(id, email, token, basePath));
+// final prefs = await SharedPreferences.getInstance();
+//     final token = prefs.setString('token') ?? '';
+            await dataBase.saveEmail(email);
 
        Get.toNamed('/email-verification', 
        arguments: {
@@ -306,6 +310,48 @@ Future<http.Response> fetchCountry() async {
   _logResponse(response);
   return response;
 }
+
+Future<http.Response> fetchVendorCategories() async {
+ var email = await dataBase.getEmail();
+  final url = Uri.parse('$baseUrl/vendors/categories');
+  _logRequest('GET', url);
+  final response = await http.get(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Accept': 'application/json',
+  
+    },
+  );
+  _logResponse(response);
+  return response;
+}
+
+
+
+Future<http.Response> saveVendorCategories(List<dynamic> category_ids) async {
+  myLog.log('from api client class $category_ids');
+ var email = await dataBase.getEmail();
+ 
+  final url = Uri.parse('$baseUrl/update-vendor-categories/danielekwere53@gmail.com');
+  _logRequest('POST', url);
+  Map<String, dynamic> body = {
+ "category_ids": category_ids
+  };
+  final response = await http.post(
+    url,
+    headers: <String, String>{
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  
+    },
+    body: jsonEncode(body)
+  );
+  _logResponse(response);
+  return response;
+}
+
+
 
 Future<http.Response> fetchTransactions() async {
  // var token = await dataBase.getToken();
