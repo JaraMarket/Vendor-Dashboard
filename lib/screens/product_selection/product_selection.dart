@@ -106,7 +106,8 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                                 }),
                               );
                             } else {
-                              return _buildOthersItem();
+                              bool isSelected = false;
+                              return _buildOthersItem(isSelected: isSelected);
                             }
                           },
                         ),
@@ -116,9 +117,11 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                       ElevatedButton(
                         onPressed: controller.selectedProducts.isNotEmpty
                             ? () {
-                              //  controller.saveCategory();
-                              Navigator.pushNamed(Get.context!, '/shop-size');
-                                //print(controller.selectedProducts);
+                                controller.saveCategory();
+                             // Navigator.pushNamed(Get.context!, '/shop-size');
+                            // print(controller.data.map((e){e.ingredients[0];}));
+                           // controller.fetchCategories();
+                             //   print(controller.selectedProducts);
                               }
                             : null,
                         child: const Text('Continue'),
@@ -166,8 +169,8 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 10),
-                    width: 50,
-                    height: 50,
+                    width: 45,
+                    height: 45,
                     decoration: BoxDecoration(
                       color: isSelected
                           ? const Color(0xFFFF9800)
@@ -175,16 +178,16 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      _getIconForProduct(product.name!),
+                      _getIconForProduct(product.name),
                       color: isSelected ? Colors.white : Colors.grey.shade600,
                       size: 24,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    product.name!,
+                   product.name.length > 25 ? '${product.name.substring(0,23)}...' : product.name,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 13,
                       fontWeight:
                           isSelected ? FontWeight.bold : FontWeight.normal,
                       color:
@@ -210,7 +213,7 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
             isSelected
                 ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                    children: product.products!.map((e) {
+                    children: product.ingredients.map((e) {
                       return Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -240,17 +243,30 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
     );
   }
 
-  Widget _buildOthersItem() {
+  Widget _buildOthersItem({bool isSelected = true}) {
+    
     return InkWell(
       onTap: () {
         // Show dialog to add custom product
+        setState(() {
+          isSelected = !isSelected;
+        });
+        print('tapping');
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade300, width: 1),
-        ),
+                color: isSelected
+                    ? const Color(0xFFFF9800)
+                        .withAlpha(26) // Changed from withOpacity(0.1)
+                    : Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: isSelected
+                      ? const Color.fromARGB(255, 44, 34, 20)
+                      : Colors.grey.shade300,
+                  width: 1,
+                ),
+              ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -283,13 +299,13 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
         return Icons.egg;
       case 'Vegetables':
         return Icons.eco;
-      case 'Cooking Oil':
+      case 'Oil & Condiment Vendors':
         return Icons.water_drop;
-      case 'Grains':
+      case 'Bakery and Grain Supply Vendors':
         return Icons.grain;
       case 'Tuber':
         return Icons.agriculture;
-      case 'Fruit':
+      case 'Fresh Produce Vendors':
         return Icons.apple;
       case 'Drinks':
         return Icons.local_drink;

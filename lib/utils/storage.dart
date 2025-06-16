@@ -380,6 +380,36 @@ class DataBase extends GetxController {
     return true;
   }
 
+  saveRole(String role) async {
+    SharedPreferences sharedPreferences = await _pref;
+    await sharedPreferences.setString('role', role);
+
+    return true;
+  }
+
+
+    saveReferalCode(String refCode) async {
+    SharedPreferences sharedPreferences = await _pref;
+    await sharedPreferences.setString('refCode', refCode);
+
+    return true;
+  }
+
+    saveReferalCount(String refCount) async {
+    SharedPreferences sharedPreferences = await _pref;
+    await sharedPreferences.setString('refCount', refCount);
+
+    return true;
+  }
+
+    saveRefererId(String referId) async {
+    SharedPreferences sharedPreferences = await _pref;
+    await sharedPreferences.setString('referId', referId);
+
+    return true;
+  }
+
+
 // Get Profile Photo
   Future<String> getProfilePhoto() async {
     SharedPreferences sharedPreferences = await _pref;

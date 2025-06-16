@@ -187,8 +187,10 @@ Future<http.Response> _retryRequest(
 
       if (response.statusCode == 200 || response.statusCode == 201) {
        OverlayLoadingProgress.stop();
-
-      //  unawaited(loginOneSignalUser(id, email, token, basePath));
+          await dataBase.saveFirstName(firstName);   //  unawaited(loginOneSignalUser(id, email, token, basePath));
+          await dataBase.saveLastName(lastName);
+          await dataBase.savePhoneNumber(phoneNumber);
+          //await dataBase.saveRecommendedBy(recommended_by)
 // final prefs = await SharedPreferences.getInstance();
 //     final token = prefs.setString('token') ?? '';
             await dataBase.saveEmail(email);
@@ -333,7 +335,7 @@ Future<http.Response> saveVendorCategories(List<dynamic> category_ids) async {
   myLog.log('from api client class $category_ids');
  var email = await dataBase.getEmail();
  
-  final url = Uri.parse('$baseUrl/update-vendor-categories/danielekwere53@gmail.com');
+  final url = Uri.parse('$baseUrl/update-vendor-categories/$email');
   _logRequest('POST', url);
   Map<String, dynamic> body = {
  "category_ids": category_ids

@@ -17,7 +17,7 @@ Future<void> updateVendorProfileBusinessShopSize() async {
   var email = await dataBase.getEmail();
     try {      
       String url =
-          '${apiClient.baseUrl}/profile-update/ekwere@gmail.com'; // Replace with your API endpoint
+          '${apiClient.baseUrl}/profile-update/$email'; // Replace with your API endpoint
       Map<String, String> headers = {
         'Accept':'application/json',
        
@@ -73,6 +73,7 @@ Future<void> updateVendorProfileBusinessShopSize() async {
       //     SnackBar(content: Text('Failed to update profile: ${response.body}')),
       //   );
         Get.snackbar("Success", "Shop Size updated successfully", backgroundColor: Colors.green,colorText: Colors.white);
+        //Get.snackbar(titleText: Icon(Icons.check),'success','Category updated successfully.', colorText: Colors.white, backgroundColor: Colors.green);
         myLog.log('Profile updated successfully');
         
       //  businessNameController.clear();

@@ -21,7 +21,7 @@ Future<void> updateVendorProfileBusinessAddress() async {
   var email = await dataBase.getEmail();
     try {      
       String url =
-          '${apiClient.baseUrl}/profile-update/ekwere@gmail.com'; // Replace with your API endpoint
+          '${apiClient.baseUrl}/profile-update/$email'; // Replace with your API endpoint
       Map<String, String> headers = {
         'Accept':'application/json',
        

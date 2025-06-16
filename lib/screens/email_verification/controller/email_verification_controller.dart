@@ -1,18 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer' as myLog;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jara_market/data/apiClient/apiClient.dart';
-import 'package:jara_market/screens/profile_setup_screen/profile_setup_screen.dart';
+import 'package:jara_market/screens/email_verification/models/models.dart';
+import 'package:jara_market/utils/storage.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 // import 'package:overlay_kit/overlay_kit.dart';
 
 class EmailVerificationController extends GetxController {
 
 ApiClient apiClient = ApiClient(Duration(milliseconds: 60 * 5));
-
+EmailVerificationModel emailVerificationModel = EmailVerificationModel();
+Data data = Data();
 RxBool isLoading = false.obs;
 RxInt resendSeconds = 240.obs; // 15 minutes in seconds
 
@@ -61,6 +62,10 @@ Future<void> verifyEmail(Map<String, String> otpData) async {
         //   MaterialPageRoute(builder: (context) => const LoginScreen()),
         // );
         var  responseBody = jsonDecode(response.body);
+        emailVerificationModel = emailVerificationModelFromJson(response.body);
+        data = emailVerificationModel.data!;
+        await dataBase.saveReferalCode(data.referralCode ?? 'N/A');
+        await dataBase.saveRole(data.role ?? 'N/A');
         var message = responseBody['message'] ?? 'something went wrong';
         ScaffoldMessenger.of(Get.context!).showSnackBar(
           SnackBar(content: Text('Success: \n${message}'),backgroundColor: Colors.green,),

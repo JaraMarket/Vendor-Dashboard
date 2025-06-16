@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'dart:developer' as myLog;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jara_market/data/apiClient/apiClient.dart';
@@ -30,7 +30,9 @@ fetchCategories();
         var body = jsonDecode(response.body);
         print(body);
         vendorCategoryModel = vendorCategoryModelFromJson(response.body);
-        data = vendorCategoryModel.data!;
+        data = vendorCategoryModel.data;
+        var result = data.map((e){e.ingredients;}).toList();
+        myLog.log(result.toString());
 
         isLoading.value = false;
       } else {
@@ -41,8 +43,10 @@ fetchCategories();
             backgroundColor: Colors.red,
           ),
         );
+        myLog.log(response.body);
       }
     } catch (e) {
+      myLog.log(e.toString());
       isLoading.value = false;
       OverlayLoadingProgress.stop();
       ScaffoldMessenger.of(Get.context!).showSnackBar(
@@ -67,6 +71,7 @@ fetchCategories();
         OverlayLoadingProgress.stop();
         var body = jsonDecode(response.body);
         print(body);
+        Get.snackbar('success','Category updated successfully.', colorText: Colors.white, backgroundColor: Colors.green);
         Navigator.pushNamed(Get.context!, '/shop-size');
       } else {
         OverlayLoadingProgress.stop();
