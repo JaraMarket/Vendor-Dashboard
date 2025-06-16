@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jara_market/data/apiClient/apiClient.dart';
 import 'package:jara_market/screens/product_selection/models/mdels.dart';
+import 'package:jara_market/utils/storage.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 
 class ProductSelectionController extends GetxController {
@@ -11,6 +12,8 @@ class ProductSelectionController extends GetxController {
   List<String> categoryList = <String>[];
   final RxList selectedProducts = [].obs;
   RxString selectedProductNames = ''.obs;
+  RxList<String> selectedProductName = <String>[].obs;
+
   RxInt appendCount = 0.obs;
   VendorCategoryModel vendorCategoryModel =
       VendorCategoryModel(data: [], message: '');
@@ -73,6 +76,7 @@ fetchCategories();
         OverlayLoadingProgress.stop();
         var body = jsonDecode(response.body);
         print(body);
+        await dataBase.saveSelectedProducts(selectedProductName);
         Get.snackbar('success','Category updated successfully.', colorText: Colors.white, backgroundColor: Colors.green);
         Navigator.pushNamed(Get.context!, '/shop-size');
       } else {

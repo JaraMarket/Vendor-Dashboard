@@ -402,6 +402,14 @@ class DataBase extends GetxController {
     return true;
   }
 
+
+  Future<void> saveSelectedProducts(List<String> products) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('selected_products', products.join(', '));
+}
+
+
+
     saveReferalCount(String refCount) async {
     SharedPreferences sharedPreferences = await _pref;
     await sharedPreferences.setString('refCount', refCount);
@@ -438,6 +446,15 @@ class DataBase extends GetxController {
       return ''; // Return an empty string if no profile photo is saved
     }
   }
+
+
+Future<List<String>> loadSelectedProducts() async {
+  final prefs = await SharedPreferences.getInstance();
+  final productsString = prefs.getString('selected_products') ?? '';
+  if (productsString.trim().isEmpty) return [];
+  return productsString.split(', ').toList();
+}
+
 
 // Get Cover Photo
   Future<String> getCoverPhoto() async {

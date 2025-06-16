@@ -135,7 +135,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               padding: const EdgeInsets.all(24.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/summary');
+
+                  controller.updateVendorProfilePaymentMethod();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,

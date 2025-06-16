@@ -65,6 +65,8 @@ Future<void> updateVendorProfileBusinessAddress() async {
       
        if (response.statusCode == 200 || response.statusCode == 201) {
         OverlayLoadingProgress.stop();
+        var address = addressController.text.isNotEmpty ? addressController.text : 'mobile and online services only';
+        await dataBase.saveAddress(address);
         // var responseBody = await response.stream.bytesToString();
         // myLog.log('Response Body: $responseBody');
       //   // Refresh profile data

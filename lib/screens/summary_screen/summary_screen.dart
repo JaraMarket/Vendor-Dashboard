@@ -25,7 +25,7 @@ setValue();
 
   String firstName = '';
   String lastName = '';
-  String category = '';
+  List<String> category = [];
   String phoneNumber = '';
   String email = '';
   String businessAddress = '';
@@ -37,12 +37,13 @@ setValue();
     var email1 = await dataBase.getEmail();
     var phoneNumber1 = await dataBase.getPhone();
     var address1 = await dataBase.getAddress();
+    var category1 = await dataBase.loadSelectedProducts();
     var paymentMethod1 = await dataBase.getPaymentMethod() ?? 'Online';
     setState(() {
       firstName = firstName1;
       lastName = lastName1;
-      category = 'protein';
-      phoneNumber1 = phoneNumber1;
+      category = category1;
+      phoneNumber = phoneNumber1;
       businessAddress = address1;
       paymentMethod = paymentMethod1;
       email = email1;
@@ -145,7 +146,7 @@ setValue();
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  category,
+                  category.join('\n '),
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],

@@ -101,20 +101,25 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                                     if (isSelected) {
                                       controller.selectedProducts
                                           .remove(product.id);
-                                          setState(() {
-                                            if(controller.appendCount.value > 0 && controller.selectedProductNames.startsWith(product.name)){
-                                            controller.selectedProductNames.value = controller.selectedProductNames.value.substring(0, controller.selectedProductNames.value.length - product.name.length);
-          controller.appendCount--;
-                                          }
-                                          });
+                                      controller.selectedProductName
+                                          .remove(product.name);
+                                      if (controller.appendCount.value > 0 &&
+                                          controller.selectedProductNames.value
+                                              .startsWith(product.name)) {
+                                        controller.selectedProductNames.value =
+                                            controller
+                                                .selectedProductNames.value
+                                                .substring(product.name.length);
+                                        controller.appendCount.value--;
+                                      }
                                     } else {
+                                      controller.selectedProductName
+                                          .add(product.name);
                                       controller.selectedProducts
                                           .add(product.id);
-                                      setState(() {
-                                        controller.selectedProductNames.value +=
-                                            product.name;
-                                            controller.appendCount++;
-                                      });
+                                      controller.selectedProductNames.value +=
+                                          product.name;
+                                      controller.appendCount.value++;
                                     }
                                   });
                                 }),
@@ -131,12 +136,13 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                       ElevatedButton(
                         onPressed: controller.selectedProducts.isNotEmpty
                             ? () {
-                                //   controller.saveCategory();
-
+                                   controller.saveCategory();
+                               // print(controller.selectedProductName.join(', '));
                                 // Navigator.pushNamed(Get.context!, '/shop-size');
                                 // print(controller.data.map((e){e.ingredients[0];}));
                                 // controller.fetchCategories();
                                 //   print(controller.selectedProducts);
+                                // controller.selectedProductNames.value = '';
                               }
                             : null,
                         child: const Text('Continue'),

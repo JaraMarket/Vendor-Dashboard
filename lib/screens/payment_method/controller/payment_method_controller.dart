@@ -24,6 +24,7 @@ RxString selectedPaymentMethod = 'online'.obs;
        
         //'Content-Type': 'multipart/form-data', // Important for multipart
       };
+      await dataBase.savePayment(selectedPaymentMethod.value);
      
       // Create multipart request
       var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -74,12 +75,12 @@ RxString selectedPaymentMethod = 'online'.obs;
       //   ScaffoldMessenger.of(Get.context!).showSnackBar(
       //     SnackBar(content: Text('Failed to update profile: ${response.body}')),
       //   );
-        Get.snackbar("Success", "Shop Size updated successfully", backgroundColor: Colors.green,colorText: Colors.white);
+        Get.snackbar("Success", "Payment Method updated successfully", backgroundColor: Colors.green,colorText: Colors.white);
         //Get.snackbar(titleText: Icon(Icons.check),'success','Category updated successfully.', colorText: Colors.white, backgroundColor: Colors.green);
         myLog.log('Profile updated successfully');
         
       //  businessNameController.clear();
-      Navigator.pushNamed(Get.context!, '/address');
+      Navigator.pushNamed(Get.context!, '/summary');
       }else{
         OverlayLoadingProgress.stop();
          var responseBody = await response.stream.bytesToString();
@@ -94,6 +95,7 @@ RxString selectedPaymentMethod = 'online'.obs;
     
     }finally {
     OverlayLoadingProgress.stop();
+   // Navigator.pushNamed(Get.context!, '/summary');
     }
     }
 }
