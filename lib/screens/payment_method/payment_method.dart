@@ -18,7 +18,7 @@ class PaymentMethodScreen extends StatefulWidget {
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   // Default selected payment method
-  String _selectedPaymentMethod = 'online';
+  
 
   @override
   Widget build(BuildContext context) {
@@ -89,10 +89,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                               // 'Lorem ipsum dolor sit a',
                               // 'Lorem ipsum dolor sit a',
                             ],
-                            isSelected: _selectedPaymentMethod == 'online',
+                            isSelected: controller.selectedPaymentMethod.value == 'online',
                             onTap: () {
                               setState(() {
-                                _selectedPaymentMethod = 'online';
+                                controller.selectedPaymentMethod.value = 'online';
                               });
                             },
                           ),
@@ -115,10 +115,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                               // 'Lorem ipsum dolor sit a',
                               // 'Lorem ipsum dolor sit a',
                             ],
-                            isSelected: _selectedPaymentMethod == 'offline',
+                            isSelected: controller.selectedPaymentMethod.value == 'offline',
                             onTap: () {
                               setState(() {
-                                _selectedPaymentMethod = 'offline';
+                                controller.selectedPaymentMethod.value = 'offline';
                               });
                             },
                           ),

@@ -380,6 +380,13 @@ class DataBase extends GetxController {
     return true;
   }
 
+  // Save payment method
+  Future<bool> savePayment(String payment) async {
+    SharedPreferences sharedPreferences = await _pref;
+    await sharedPreferences.setString('payment', payment);
+    return true;
+  }
+
   saveRole(String role) async {
     SharedPreferences sharedPreferences = await _pref;
     await sharedPreferences.setString('role', role);
@@ -654,6 +661,22 @@ class DataBase extends GetxController {
 
     if (sharedPreferences.containsKey('phone')) {
       String data = sharedPreferences.getString('phone')!;
+      _phone = data;
+
+      return data;
+    } else {
+      _phone = '';
+
+      return '';
+    }
+  }
+
+
+    Future<String> getPaymentMethod() async {
+    SharedPreferences sharedPreferences = await _pref;
+
+    if (sharedPreferences.containsKey('payment')) {
+      String data = sharedPreferences.getString('payment')!;
       _phone = data;
 
       return data;

@@ -10,6 +10,8 @@ class ProductSelectionController extends GetxController {
   ApiClient apiClient = ApiClient(Duration(seconds: 60 * 5));
   List<String> categoryList = <String>[];
   final RxList selectedProducts = [].obs;
+  RxString selectedProductNames = ''.obs;
+  RxInt appendCount = 0.obs;
   VendorCategoryModel vendorCategoryModel =
       VendorCategoryModel(data: [], message: '');
   List<Data> data = [];

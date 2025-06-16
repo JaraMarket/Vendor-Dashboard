@@ -93,14 +93,28 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                                   .contains(product.id);
 
                               return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: _buildProductItem(product, isSelected, () {
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                child:
+                                    _buildProductItem(product, isSelected, () {
                                   setState(() {
                                     if (isSelected) {
                                       controller.selectedProducts
                                           .remove(product.id);
+                                          setState(() {
+                                            if(controller.appendCount.value > 0 && controller.selectedProductNames.startsWith(product.name)){
+                                            controller.selectedProductNames.value = controller.selectedProductNames.value.substring(0, controller.selectedProductNames.value.length - product.name.length);
+          controller.appendCount--;
+                                          }
+                                          });
                                     } else {
-                                      controller.selectedProducts.add(product.id);
+                                      controller.selectedProducts
+                                          .add(product.id);
+                                      setState(() {
+                                        controller.selectedProductNames.value +=
+                                            product.name;
+                                            controller.appendCount++;
+                                      });
                                     }
                                   });
                                 }),
@@ -117,11 +131,12 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                       ElevatedButton(
                         onPressed: controller.selectedProducts.isNotEmpty
                             ? () {
-                                controller.saveCategory();
-                             // Navigator.pushNamed(Get.context!, '/shop-size');
-                            // print(controller.data.map((e){e.ingredients[0];}));
-                           // controller.fetchCategories();
-                             //   print(controller.selectedProducts);
+                                //   controller.saveCategory();
+
+                                // Navigator.pushNamed(Get.context!, '/shop-size');
+                                // print(controller.data.map((e){e.ingredients[0];}));
+                                // controller.fetchCategories();
+                                //   print(controller.selectedProducts);
                               }
                             : null,
                         child: const Text('Continue'),
@@ -185,7 +200,9 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                   product.name.length > 25 ? '${product.name.substring(0,23)}...' : product.name,
+                    product.name.length > 25
+                        ? '${product.name.substring(0, 23)}...'
+                        : product.name,
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight:
@@ -212,31 +229,30 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
             ),
             isSelected
                 ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: product.ingredients.map((e) {
                       return Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: Column(
                           children: [
-                         //  List<bool> selct = List.generate(product.products.length, (value)=> value),
+                            //  List<bool> selct = List.generate(product.products.length, (value)=> value),
                             Row(
                               children: [
-                                Checkbox(value: isSelected, onChanged: (value) {
-                                  
-                                },),
+                                Checkbox(
+                                  value: isSelected,
+                                  onChanged: (value) {},
+                                ),
                                 Text(' ${e.name}'),
                               ],
-                              
                             ),
-                         //   Divider(),
+                            //   Divider(),
                           ],
                         ),
                       );
                     }).toList(),
                   )
                 : SizedBox.shrink(),
-
           ],
         ),
       ),
@@ -244,7 +260,6 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
   }
 
   Widget _buildOthersItem({bool isSelected = true}) {
-    
     return InkWell(
       onTap: () {
         // Show dialog to add custom product
@@ -255,18 +270,18 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
       },
       child: Container(
         decoration: BoxDecoration(
-                color: isSelected
-                    ? const Color(0xFFFF9800)
-                        .withAlpha(26) // Changed from withOpacity(0.1)
-                    : Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: isSelected
-                      ? const Color.fromARGB(255, 44, 34, 20)
-                      : Colors.grey.shade300,
-                  width: 1,
-                ),
-              ),
+          color: isSelected
+              ? const Color(0xFFFF9800)
+                  .withAlpha(26) // Changed from withOpacity(0.1)
+              : Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isSelected
+                ? const Color.fromARGB(255, 44, 34, 20)
+                : Colors.grey.shade300,
+            width: 1,
+          ),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

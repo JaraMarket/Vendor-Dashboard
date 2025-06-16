@@ -2,13 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:jara_market/screens/summary_screen/controller/summary_controller.dart';
+import 'package:jara_market/utils/storage.dart';
 import '../../widgets/status_bar.dart';
 import '../../widgets/back_button.dart';
 
 SummaryController summaryController = Get.put(SummaryController());
 
-class SummaryScreen extends StatelessWidget {
+class SummaryScreen extends StatefulWidget {
   const SummaryScreen({super.key});
+
+  @override
+  State<SummaryScreen> createState() => _SummaryScreenState();
+}
+
+class _SummaryScreenState extends State<SummaryScreen> {
+
+@override
+void initState() {
+  super.initState();
+setValue();
+}
+
+  String firstName = '';
+  String lastName = '';
+  String category = '';
+  String phoneNumber = '';
+  String email = '';
+  String businessAddress = '';
+  String paymentMethod = '';
+
+  setValue() async{
+    var firstName1 = await dataBase.getFirstName();
+    var lastName1 = await dataBase.getLastName();
+    var email1 = await dataBase.getEmail();
+    var phoneNumber1 = await dataBase.getPhone();
+    var address1 = await dataBase.getAddress();
+    var paymentMethod1 = await dataBase.getPaymentMethod() ?? 'Online';
+    setState(() {
+      firstName = firstName1;
+      lastName = lastName1;
+      category = 'protein';
+      phoneNumber1 = phoneNumber1;
+      businessAddress = address1;
+      paymentMethod = paymentMethod1;
+      email = email1;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +86,8 @@ class SummaryScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       _buildPaymentMethod(),
                       const SizedBox(height: 24),
-                      _buildSectionTitle('Subscription Plan'),
-                      const SizedBox(height: 16),
+                      // _buildSectionTitle('Subscription Plan'),
+                      // const SizedBox(height: 16),
                       _buildSubscriptionPlan(),
                       const SizedBox(height: 40),
                     ],
@@ -97,15 +137,15 @@ class SummaryScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            const Column(
+             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Victoria James',
+                  "${firstName} ${lastName}",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'Spices',
+                  category,
                   style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],
@@ -113,13 +153,13 @@ class SummaryScreen extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 24),
-        _buildInfoRow('Phone Number', '+234 890 864 6754'),
+        _buildInfoRow('Phone Number', phoneNumber.isNotEmpty ? phoneNumber : 'N/A'),
         const SizedBox(height: 16),
-        _buildInfoRow('Email Address', 'hello@victoriajames.com'),
+        _buildInfoRow('Email Address', email.isNotEmpty ? email : 'N/A'),
         const SizedBox(height: 16),
-        _buildInfoRow('Address', 'Uran Street, Uyo'),
+        _buildInfoRow('Address', businessAddress.isNotEmpty ? businessAddress : 'N/A'),
         const SizedBox(height: 16),
-        _buildInfoRow('Website', '@victoriajames'),
+        _buildInfoRow('Website', email.isNotEmpty ? email : 'N/A'),
       ],
     );
   }
@@ -128,8 +168,8 @@ class SummaryScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Online Payment',
+         Text(
+          paymentMethod.isNotEmpty ? paymentMethod : 'N/A',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
