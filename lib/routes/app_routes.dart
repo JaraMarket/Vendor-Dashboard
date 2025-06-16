@@ -20,6 +20,8 @@ import 'package:jara_market/screens/job_details/bindings/job_details_bindings.da
 import 'package:jara_market/screens/job_details/job_details.dart';
 import 'package:jara_market/screens/job_progress/bindings/job_progress_bindings.dart';
 import 'package:jara_market/screens/job_progress/job_progress.dart';
+import 'package:jara_market/screens/login/bindings/login_bindings.dart';
+import 'package:jara_market/screens/login/login.dart';
 import 'package:jara_market/screens/market_list/bindings/market_list_bindings.dart';
 import 'package:jara_market/screens/market_list/market_list.dart';
 import 'package:jara_market/screens/onboarding_screen/bindings/onboarding_bindings.dart';
@@ -67,6 +69,7 @@ class AppRoutes{
         static const String orderHistory = '/order-history';
         static const String wallet = '/wallet';
         static const String splash = '/splash';
+        static const String login = '/login';
 
         static List<GetPage> pages = [
             GetPage(
@@ -154,6 +157,14 @@ class AppRoutes{
                 bindings: [
                     // Add any necessary bindings here
                     JobProgressBindings(),
+                ],
+            ),
+            GetPage(
+                name: login,
+                page: () => const LoginScreen(),
+                bindings: [
+                    // Add any necessary bindings here
+                    LoginBindings(),
                 ],
             ),
             GetPage(

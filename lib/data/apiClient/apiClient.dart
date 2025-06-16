@@ -537,6 +537,8 @@ Future<http.Response> getCheckoutAddress() async {
     return response;
   }
 
+  
+
   // Login user
   Future<http.Response> login(Map<String, dynamic> loginData) async {
     final url = Uri.parse('$baseUrl/login');
@@ -611,6 +613,53 @@ Future<http.Response> getCheckoutAddress() async {
         url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+        },
+      ).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('Request timed out');
+        },
+      );
+      _logResponse(response);
+      return response;
+    });
+  }
+
+
+  // Fetch available orders
+  Future<http.Response> fetchorders() async {
+    final url = Uri.parse('$baseUrl/vendor/orders');
+    var token = await dataBase.getToken();
+    _logRequest('GET', url);
+    return _retryRequest(() async {
+      final response = await http.get(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token'
+        },
+      ).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('Request timed out');
+        },
+      );
+      _logResponse(response);
+      return response;
+    });
+  }
+
+
+  Future<http.Response> fetchAcceptedOrders() async {
+    final url = Uri.parse('$baseUrl/vendor/orders/accepted');
+    var token = await dataBase.getToken();
+    _logRequest('GET', url);
+    return _retryRequest(() async {
+      final response = await http.get(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token'
         },
       ).timeout(
         const Duration(seconds: 10),

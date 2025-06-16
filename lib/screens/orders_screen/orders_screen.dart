@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
 import 'package:jara_market/screens/orders_screen/controller/orders_controller.dart';
+import 'package:jara_market/screens/orders_screen/models/models.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import '../../widgets/status_bar.dart';
 
 OrdersController controller = Get.put(OrdersController());
@@ -16,6 +19,13 @@ class OrdersScreen extends StatefulWidget {
 class _OrdersScreenState extends State<OrdersScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+RefreshController _refreshController = RefreshController(initialRefresh: false);
+
+_onRefresh(){
+  controller.fetchOrders();
+  controller.fetchAcceptedOrders();
+}
 
   @override
   void initState() {
@@ -34,40 +44,49 @@ class _OrdersScreenState extends State<OrdersScreen>
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       body: SafeArea(
-        child: Column(
-          children: [
-            const StatusBar(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset('assets/logo.png', height: 32),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.grey,
-                      size: 28,
+        child: SmartRefresher(
+          controller: _refreshController,
+          onRefresh: _onRefresh,
+          child: Column(
+            children: [
+              const StatusBar(),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset('assets/logo.png', height: 32),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.notifications_outlined,
+                        color: Colors.grey,
+                        size: 28,
+                      ),
+                      onPressed: () {},
                     ),
-                    onPressed: () {},
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            TabBar(
-              controller: _tabController,
-              tabs: const [Tab(text: 'Orders'), Tab(text: 'History')],
-              labelColor: const Color(0xFFFF9800),
-              unselectedLabelColor: Colors.grey,
-              indicatorColor: const Color(0xFFFF9800),
-            ),
-            Expanded(
-              child: TabBarView(
+              TabBar(
                 controller: _tabController,
-                children: [_buildOrdersList(), _buildOrderHistory()],
+                tabs: const [Tab(text: 'Orders'), Tab(text: 'History')],
+                labelColor: const Color(0xFFFF9800),
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: const Color(0xFFFF9800),
               ),
-            ),
-          ],
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [Obx((){
+                    return controller.isLoadingOrders.value ? Center(child: CircularProgressIndicator(color: Colors.amber,),) : controller.availableData.isEmpty ? Center(child: Text('You currently do not have any order yet'),) : _buildOrdersList();
+                  }),
+                   Obx((){
+                    return controller.isloadingAccpted.value ?  Center(child: CircularProgressIndicator(color: Colors.amber,)) : controller.acceptedData.isEmpty ? Center(child: Text('You currently do not have any accepted order yet'),) : _buildOrderHistory();
+                   })],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -77,9 +96,10 @@ class _OrdersScreenState extends State<OrdersScreen>
     return ListView.builder(
       key: const ValueKey('orders_list'),
       padding: const EdgeInsets.all(16),
-      itemCount: 3,
+      itemCount: controller.availableData.length,
       itemBuilder: (context, index) {
-        return _buildOrderCard(false);
+        Data dataAvaialable = controller.availableData[index];
+        return _buildOrderCardAvailable(false,dataAvaialable );
       },
     );
   }
@@ -88,14 +108,15 @@ class _OrdersScreenState extends State<OrdersScreen>
     return ListView.builder(
       key: const ValueKey('history_list'),
       padding: const EdgeInsets.all(16),
-      itemCount: 2,
+      itemCount: controller.acceptedData.length,
       itemBuilder: (context, index) {
-        return _buildOrderCard(true);
+        Data dataHistory = controller.acceptedData[index];
+        return _buildOrderCardHistory(true, dataHistory);
       },
     );
   }
 
-  Widget _buildOrderCard(bool isCompleted) {
+  Widget _buildOrderCardAvailable(bool isCompleted, Data dataAvaialable) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
@@ -129,11 +150,12 @@ class _OrdersScreenState extends State<OrdersScreen>
                   ),
                 ),
                 const SizedBox(width: 12),
-                const Column(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Brenda OKeefe',
+                     // 'Brenda OKeefe',
+                     dataAvaialable.customer!,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -151,7 +173,8 @@ class _OrdersScreenState extends State<OrdersScreen>
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      '294.702.3148',
+                      // '294.702.3148',
+                      dataAvaialable.orderId.toString(),
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey.shade700,
@@ -188,11 +211,11 @@ class _OrdersScreenState extends State<OrdersScreen>
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Column(
+                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '₦25,000',
+                      '₦${dataAvaialable.price}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -209,14 +232,18 @@ class _OrdersScreenState extends State<OrdersScreen>
                     ),
                     SizedBox(height: 2),
                     Text(
-                      'Half Bag',
+                      dataAvaialable.unit!,
                       style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   ],
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '₦2,199.99',
+                 dataAvaialable.price != null
+                      ? (double.tryParse(dataAvaialable.price!) != null
+                          ? '₦${(double.parse(dataAvaialable.price!) / 2).toStringAsFixed(2)}'
+                          : '')
+                      : '',
                   style: TextStyle(
                     fontSize: 14,
                     decoration: TextDecoration.lineThrough,
@@ -295,8 +322,305 @@ class _OrdersScreenState extends State<OrdersScreen>
                       ),
                     ),
                     const SizedBox(height: 4),
+                    Text(
+                      '₦${dataAvaialable.price}',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                if (isCompleted)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.green.shade100,
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: const Text(
+                      'Order Completed',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                else
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/market-list');
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.green.shade100,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: const Text(
+                        'View Market List',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, '/market-list');
+                //   },
+                //   // style: ElevatedButton.styleFrom(
+                //   //   backgroundColor: const Color(0xFFFF4500),
+                //   //   foregroundColor: Colors.white,
+                //   //   shape: RoundedRectangleBorder(
+                //   //     borderRadius: BorderRadius.circular(8),
+                //   //   ),
+                //   //   padding: const EdgeInsets.symmetric(
+                //   //     horizontal: 16,
+                //   //     vertical: 12,
+                //   //   ),
+                //   // ),
+                //   child: const Text(
+                //     'View Market List',
+                //     style: TextStyle(
+                //       fontSize: 14,
+                //       fontWeight: FontWeight.w600,
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+  Widget _buildOrderCardHistory(bool isCompleted,Data dataHistory) {
+    // Data dataHistory;
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(13), // Changed from withOpacity(0.05)
+            blurRadius: 10,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.grey.shade500,
+                    size: 28,
+                  ),
+                ),
+                const SizedBox(width: 12),
+               Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      //'Brenda OKeefe',
+                      dataHistory.customer!,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
                     const Text(
-                      '₦85,000',
+                      'Order ID:',
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      //'294.702.3148',
+                      dataHistory.orderId.toString(),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey.shade700,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Market List',
+                  style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      //'₦25,000',
+                      "₦${dataHistory.price!}",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                     // 'Rice',
+                     dataHistory.name!,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      // 'Half Bag',
+                      dataHistory.unit!,
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  //'₦2,199.99',
+                  dataHistory.price != null
+                      ? (double.tryParse(dataHistory.price!) != null
+                          ? '₦${(double.parse(dataHistory.price!) / 2).toStringAsFixed(2)}'
+                          : '')
+                      : '',
+                  style: TextStyle(
+                    fontSize: 14,
+                    decoration: TextDecoration.lineThrough,
+                    color: Colors.grey.shade500,
+                  ),
+                ),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Estimated Time',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    const Text(
+                      '23 mins',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                const Icon(Icons.location_on, color: Colors.red, size: 20),
+                const SizedBox(width: 8),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Drop-off',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    const Text(
+                      'Jara Market Store, Itam',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Divider(height: 1),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Order Cost',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade600,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                     Text(
+                      //'₦85,000',
+                      "₦${dataHistory.price}",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

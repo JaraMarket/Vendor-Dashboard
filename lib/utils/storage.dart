@@ -352,6 +352,13 @@ class DataBase extends GetxController {
     return true;
   }
 
+    saveFullName(String full_name) async {
+    SharedPreferences sharedPreferences = await _pref;
+    await sharedPreferences.setString('full_name', last_name);
+
+    return true;
+  }
+
   updateStatus(bool status) async {
     SharedPreferences sharedPreferences = await _pref;
     await sharedPreferences.setBool('status', status);
@@ -442,6 +449,17 @@ class DataBase extends GetxController {
     if (sharedPreferences.containsKey('category')) {
       String category = sharedPreferences.getString('category')!;
       return category;
+    } else {
+      return ''; // Return an empty string if no profile photo is saved
+    }
+  }
+
+  // Get Profile Photo
+  Future<String> getFullName() async {
+    SharedPreferences sharedPreferences = await _pref;
+    if (sharedPreferences.containsKey('full_name')) {
+      String full_name = sharedPreferences.getString('full_name')!;
+      return full_name;
     } else {
       return ''; // Return an empty string if no profile photo is saved
     }

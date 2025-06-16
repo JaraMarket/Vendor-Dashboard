@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
 import 'package:jara_market/screens/dashboard_screen/controller/dashboard_controller.dart';
+import 'package:jara_market/utils/storage.dart';
 import '../../widgets/status_bar.dart';
 import '../orders_screen/orders_screen.dart';
 import '../wallet_screen/wallet_screen.dart';
@@ -162,6 +163,10 @@ class HomeTab extends StatelessWidget {
             ),
           ),
         ),
+        ElevatedButton(onPressed: ()async{
+          var token = await dataBase.getToken();
+          print(token);
+        }, child: Text('token print'))
       ],
     );
   }

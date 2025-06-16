@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/utils.dart';
 import 'package:jara_market/screens/create_account/controller/create_account_controller.dart';
+import 'package:jara_market/screens/login/login.dart';
 import '../../widgets/status_bar.dart';
 
 CreateAccountController controller = Get.put(CreateAccountController());
@@ -263,9 +265,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   child: const Text('Sign Up'),
                 ),
                 const SizedBox(height: 24),
-                ElevatedButton(onPressed: (){
-                  Navigator.pushNamed(context, '/business-name');
-                }, child: Text('tap here')),
                 const Row(
                   children: [
                     Expanded(child: Divider()),
@@ -300,7 +299,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 const SizedBox(height: 24),
                 Center(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(()=> LoginScreen());
+                    },
                     child: RichText(
                       text: const TextSpan(
                         text: 'Already have an account? ',

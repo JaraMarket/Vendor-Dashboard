@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:jara_market/routes/app_routes.dart';
+import 'package:jara_market/utils/storage.dart';
 import 'package:overlay_kit/overlay_kit.dart';
 // import 'screens/onboarding_screen/onboarding_screen.dart';
 // import 'screens/profile_setup_screen/profile_setup_screen.dart';
@@ -27,7 +29,7 @@ import 'package:overlay_kit/overlay_kit.dart';
 // import 'screens/job_progress/job_progress.dart';
 // import 'screens/job_completed/job_completed.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -35,12 +37,16 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-  
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  DataBase dataBase = Get.put(DataBase());
+  var token = await dataBase.getToken();
+  String initialRoute = token.isNotEmpty ? '/dashboard' : '/splash';
+  runApp(MyApp(initialRoute: initialRoute,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+  const MyApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +100,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: AppRoutes.splash,
+        initialRoute: initialRoute,
         // home: const SplashScreen(),
         getPages: AppRoutes.pages,
         // routes: {
