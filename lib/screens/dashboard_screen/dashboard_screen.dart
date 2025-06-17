@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/route_manager.dart';
 import 'package:jara_market/screens/dashboard_screen/controller/dashboard_controller.dart';
@@ -33,6 +34,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       backgroundColor: Colors.grey.shade50,
       body: SafeArea(child: _tabs[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
@@ -42,21 +44,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: const Color(0xFFFF9800),
         unselectedItemColor: Colors.grey,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: SvgPicture.asset('assets/home_unselected.svg'),
+            activeIcon: SvgPicture.asset('assets/home_selected.svg'),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
+            icon: SvgPicture.asset('assets/order_unselected.svg'),
+            activeIcon: SvgPicture.asset('assets/order_selected.svg'),
             label: 'Orders',
           ),
-          BottomNavigationBarItem(
+        const  BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet_outlined),
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: SvgPicture.asset('assets/profile_unselected.svg'),
+            activeIcon: SvgPicture.asset('assets/profile_selected.svg'),
             label: 'Profile',
           ),
         ],

@@ -43,7 +43,7 @@ class Data {
   String? unit;
   String? imageUrl;
   String? status;
-  Null? vendor;
+  Vendor? vendor;
 
   Data(
       {this.itemId,
@@ -85,6 +85,33 @@ class Data {
     data['image_url'] = this.imageUrl;
     data['status'] = this.status;
     data['vendor'] = this.vendor;
+    return data;
+  }
+}
+
+
+
+class Vendor {
+  int? id;
+  String? name;
+  String? email;
+  String? phoneNumber;
+
+  Vendor({this.id, this.name, this.email, this.phoneNumber});
+
+  Vendor.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    email = json['email'];
+    phoneNumber = json['phone_number'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['email'] = this.email;
+    data['phone_number'] = this.phoneNumber;
     return data;
   }
 }

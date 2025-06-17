@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:jara_market/screens/orders_screen/controller/orders_controller.dart';
+import 'package:jara_market/screens/orders_screen/models/accepted_order.dart';
 import 'package:jara_market/screens/orders_screen/models/models.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import '../../widgets/status_bar.dart';
@@ -150,7 +151,7 @@ class _OrdersScreenState extends State<OrdersScreen>
       padding: const EdgeInsets.all(16),
       itemCount: controller.acceptedData.length,
       itemBuilder: (context, index) {
-        Data dataHistory = controller.acceptedData[index];
+        AcceptedData dataHistory = controller.acceptedData[index];
         return _buildOrderCardHistory(true, dataHistory);
       },
     );
@@ -315,7 +316,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                     height: 29,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/market-list');
+                        Navigator.pushNamed(context, '/job-completed', arguments: dataAvaialable);
                       },
                       style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
@@ -338,7 +339,7 @@ class _OrdersScreenState extends State<OrdersScreen>
     );
   }
 
-  Widget _buildOrderCardHistory(bool isCompleted, Data dataHistory) {
+  Widget _buildOrderCardHistory(bool isCompleted, AcceptedData dataHistory) {
     // Data dataHistory;
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -516,25 +517,38 @@ class _OrdersScreenState extends State<OrdersScreen>
             ),
           ),
           const SizedBox(height: 16),
-         Row(children: [
-           const Column(
-              spacing: 5,
-              children: [
-                Text('Message'),
-
-                Text('Lorem ipsum dolor sit amet consectetur. Nibh malesuada nisi massa pulvinar gravida volutpat vitae consectetur. ')
-                ],),
-            Column(children: [
-             const Text('Order Cost'),
-              Text(dataHistory.price!),
-              Row(
+         Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 5,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            const Expanded(
+               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 5,
+                  children: [
+                    Text('Message'),
+               
+                    Text('Lorem ipsum dolor sit amet consectetur. Nibh malesuada nisi massa pulvinar gravida volutpat vitae consectetur. ')
+                    ],),
+             ),
+             
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  SvgPicture.asset('assets/completed.svg'),
-                  Text(dataHistory.status!)
-                ],
-              ),
-            ],)
-          ],)
+               const Text('Order Cost'),
+                Text(dataHistory.price!),
+                Row(
+                  children: [
+                    SvgPicture.asset('assets/completed.svg'),
+                    Text(dataHistory.status!)
+                  ],
+                ),
+              ],)
+            ],),
+         )
         ],
       ),
     );
