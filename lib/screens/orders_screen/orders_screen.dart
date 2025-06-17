@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/route_manager.dart';
 import 'package:jara_market/screens/orders_screen/controller/orders_controller.dart';
 import 'package:jara_market/screens/orders_screen/models/models.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
@@ -20,12 +19,13 @@ class _OrdersScreenState extends State<OrdersScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-RefreshController _refreshController = RefreshController(initialRefresh: false);
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
-_onRefresh(){
-  controller.fetchOrders();
-  controller.fetchAcceptedOrders();
-}
+  _onRefresh() {
+    controller.fetchOrders();
+    controller.fetchAcceptedOrders();
+  }
 
   @override
   void initState() {
@@ -57,32 +57,72 @@ _onRefresh(){
                   children: [
                     Image.asset('assets/logo.png', height: 32),
                     IconButton(
-                      icon: const Icon(
-                        Icons.notifications_outlined,
-                        color: Colors.grey,
-                        size: 28,
-                      ),
+                      icon: SvgPicture.asset('assets/notification.svg'),
+                      // const Icon(
+                      //   Icons.notifications_outlined,
+                      //   color: Colors.grey,
+                      //   size: 28,
+                      // ),
                       onPressed: () {},
                     ),
                   ],
                 ),
               ),
-              TabBar(
-                controller: _tabController,
-                tabs: const [Tab(text: 'Orders'), Tab(text: 'History')],
-                labelColor: const Color(0xFFFF9800),
-                unselectedLabelColor: Colors.grey,
-                indicatorColor: const Color(0xFFFF9800),
+              Container(
+                height: 35,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  color: Color(0xffD9D9D9),
+                ),
+                child: TabBar(
+                  dividerColor: Colors.grey.shade50,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xffF19A0D),
+                  ),
+                  controller: _tabController,
+                  tabs: const [Tab(text: 'Orders'), Tab(text: 'History')],
+                  labelColor: Colors.white,
+                  unselectedLabelColor: Colors.grey,
+                  indicatorColor: Colors.white,
+                  indicatorSize:
+                      TabBarIndicatorSize.tab, // 👈 Ensures full tab width
+                  // indicatorPadding: EdgeInsets.symmetric(horizontal: 20),
+                ),
               ),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
-                  children: [Obx((){
-                    return controller.isLoadingOrders.value ? Center(child: CircularProgressIndicator(color: Colors.amber,),) : controller.availableData.isEmpty ? Center(child: Text('You currently do not have any order yet'),) : _buildOrdersList();
-                  }),
-                   Obx((){
-                    return controller.isloadingAccpted.value ?  Center(child: CircularProgressIndicator(color: Colors.amber,)) : controller.acceptedData.isEmpty ? Center(child: Text('You currently do not have any accepted order yet'),) : _buildOrderHistory();
-                   })],
+                  children: [
+                    Obx(() {
+                      return controller.isLoadingOrders.value
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.amber,
+                              ),
+                            )
+                          : controller.availableData.isEmpty
+                              ? const Center(
+                                  child: Text(
+                                      'You currently do not have any order yet'),
+                                )
+                              : _buildOrdersList();
+                    }),
+                    Obx(() {
+                      return controller.isloadingAccpted.value
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                              color: Colors.amber,
+                            ))
+                          : controller.acceptedData.isEmpty
+                              ? const Center(
+                                  child: Text(
+                                      'You currently do not have any accepted order yet'),
+                                )
+                              : _buildOrderHistory();
+                    })
+                  ],
                 ),
               ),
             ],
@@ -99,7 +139,7 @@ _onRefresh(){
       itemCount: controller.availableData.length,
       itemBuilder: (context, index) {
         Data dataAvaialable = controller.availableData[index];
-        return _buildOrderCardAvailable(false,dataAvaialable );
+        return _buildOrderCardAvailable(false, dataAvaialable);
       },
     );
   }
@@ -137,8 +177,8 @@ _onRefresh(){
             child: Row(
               children: [
                 Container(
-                  width: 48,
-                  height: 48,
+                  width: 35,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade300,
                     shape: BoxShape.circle,
@@ -146,37 +186,43 @@ _onRefresh(){
                   child: Icon(
                     Icons.person,
                     color: Colors.grey.shade500,
-                    size: 28,
+                    size: 24,
                   ),
                 ),
                 const SizedBox(width: 12),
-                 Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     // 'Brenda OKeefe',
-                     dataAvaialable.customer!,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      // 'Brenda OKeefe',
+                      dataAvaialable.customer!,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Mont'),
                     ),
                   ],
                 ),
                 const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                Row(
+                  //crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     const Text(
                       'Order ID:',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       // '294.702.3148',
                       dataAvaialable.orderId.toString(),
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 10,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
                         color: Colors.grey.shade700,
                       ),
                     ),
@@ -185,229 +231,114 @@ _onRefresh(){
               ],
             ),
           ),
+
+          //const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Market List',
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                 Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '₦${dataAvaialable.price}',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xffFA254C),
                       ),
                     ),
-                    SizedBox(height: 2),
-                    Text(
-                      'Rice',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      dataAvaialable.unit!,
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
+                    const SizedBox(height: 2),
+                    Row(
+                      spacing: 3,
+                      children: [
+                        Text(
+                          dataAvaialable.name!.length > 7
+                              ? "${dataAvaialable.name!.substring(0, 6)}..."
+                              : dataAvaialable.name!,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w800,
+                            //fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          dataAvaialable.unit!,
+                          style: const TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Inter',
+                              //sfontWeight: FontWeight.w800,
+                              color: Colors.grey),
+                        ),
+                      ],
+                    )
                   ],
                 ),
-                const SizedBox(width: 8),
-                Text(
-                 dataAvaialable.price != null
-                      ? (double.tryParse(dataAvaialable.price!) != null
-                          ? '₦${(double.parse(dataAvaialable.price!) / 2).toStringAsFixed(2)}'
-                          : '')
-                      : '',
-                  style: TextStyle(
-                    fontSize: 14,
-                    decoration: TextDecoration.lineThrough,
-                    color: Colors.grey.shade500,
-                  ),
-                ),
-                const Spacer(),
+                // const SizedBox(width: 8),
+                // const Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Estimated Time',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      '23 mins',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                const Icon(Icons.location_on, color: Colors.red, size: 20),
-                const SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Drop-off',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
+                    Row(
+                      spacing: 3,
+                      children: [
+                        SvgPicture.asset('assets/location.svg'),
+                        Text(
+                          'Drop-off',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Mont',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 2),
                     const Text(
                       'Jara Market Store, Itam',
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 10,
+                        fontFamily: 'Mont',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
+                SizedBox(
+                    width: 57,
+                    height: 29,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/market-list');
+                      },
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          backgroundColor: const Color(0xffE83C00)),
+                      child: const Text(
+                        'view',
+                        style: TextStyle(
+                            fontFamily: 'Mont',
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    )),
               ],
             ),
           ),
           const SizedBox(height: 16),
-          const Divider(height: 1),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Order Cost',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '₦${dataAvaialable.price}',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                if (isCompleted)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade100,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Text(
-                      'Order Completed',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
-                else
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/market-list');
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade100,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: const Text(
-                        'View Market List',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                // ElevatedButton(
-                //   onPressed: () {
-                //     Navigator.pushNamed(context, '/market-list');
-                //   },
-                //   // style: ElevatedButton.styleFrom(
-                //   //   backgroundColor: const Color(0xFFFF4500),
-                //   //   foregroundColor: Colors.white,
-                //   //   shape: RoundedRectangleBorder(
-                //   //     borderRadius: BorderRadius.circular(8),
-                //   //   ),
-                //   //   padding: const EdgeInsets.symmetric(
-                //   //     horizontal: 16,
-                //   //     vertical: 12,
-                //   //   ),
-                //   // ),
-                //   child: const Text(
-                //     'View Market List',
-                //     style: TextStyle(
-                //       fontSize: 14,
-                //       fontWeight: FontWeight.w600,
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-          ),
         ],
       ),
     );
   }
 
-
-
-  Widget _buildOrderCardHistory(bool isCompleted,Data dataHistory) {
+  Widget _buildOrderCardHistory(bool isCompleted, Data dataHistory) {
     // Data dataHistory;
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
@@ -429,8 +360,8 @@ _onRefresh(){
             child: Row(
               children: [
                 Container(
-                  width: 48,
-                  height: 48,
+                  width: 35,
+                  height: 35,
                   decoration: BoxDecoration(
                     color: Colors.grey.shade300,
                     shape: BoxShape.circle,
@@ -438,37 +369,43 @@ _onRefresh(){
                   child: Icon(
                     Icons.person,
                     color: Colors.grey.shade500,
-                    size: 28,
+                    size: 24,
                   ),
                 ),
                 const SizedBox(width: 12),
-               Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      //'Brenda OKeefe',
+                      // 'Brenda OKeefe',
                       dataHistory.customer!,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Mont'),
                     ),
                   ],
                 ),
                 const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                Row(
+                  //crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     const Text(
                       'Order ID:',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey),
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      //'294.702.3148',
+                      // '294.702.3148',
                       dataHistory.orderId.toString(),
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 10,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
                         color: Colors.grey.shade700,
                       ),
                     ),
@@ -477,226 +414,127 @@ _onRefresh(){
               ],
             ),
           ),
+
+          //const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
-              children: [
-                Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Market List',
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      //'₦25,000',
-                      "₦${dataHistory.price!}",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
+                      '₦${dataHistory.price}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xffFA254C),
                       ),
                     ),
-                    SizedBox(height: 2),
-                    Text(
-                     // 'Rice',
-                     dataHistory.name!,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      // 'Half Bag',
-                      dataHistory.unit!,
-                      style: TextStyle(fontSize: 14, color: Colors.grey),
-                    ),
+                    const SizedBox(height: 2),
+                    Row(
+                      spacing: 3,
+                      children: [
+                        Text(
+                          dataHistory.name!.length > 7
+                              ? "${dataHistory.name!.substring(0, 6)}..."
+                              : dataHistory.name!,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w800,
+                            //fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          dataHistory.unit!,
+                          style: const TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Inter',
+                              //sfontWeight: FontWeight.w800,
+                              color: Colors.grey),
+                        ),
+                      ],
+                    )
                   ],
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  //'₦2,199.99',
-                  dataHistory.price != null
-                      ? (double.tryParse(dataHistory.price!) != null
-                          ? '₦${(double.parse(dataHistory.price!) / 2).toStringAsFixed(2)}'
-                          : '')
-                      : '',
-                  style: TextStyle(
-                    fontSize: 14,
-                    decoration: TextDecoration.lineThrough,
-                    color: Colors.grey.shade500,
-                  ),
-                ),
-                const Spacer(),
+                // const SizedBox(width: 8),
+                // const Spacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Estimated Time',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      '23 mins',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                const Icon(Icons.location_on, color: Colors.red, size: 20),
-                const SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Drop-off',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
+                    Row(
+                      spacing: 3,
+                      children: [
+                        SvgPicture.asset('assets/location.svg'),
+                        Text(
+                          'Drop-off',
+                          style: TextStyle(
+                            fontSize: 9,
+                            fontFamily: 'Mont',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 2),
                     const Text(
                       'Jara Market Store, Itam',
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 10,
+                        fontFamily: 'Mont',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
+                // SizedBox(
+                //     width: 57,
+                //     height: 29,
+                //     child: ElevatedButton(
+                //       onPressed: () {
+                //         Navigator.pushNamed(context, '/market-list');
+                //       },
+                //       style: ElevatedButton.styleFrom(
+                //           padding: EdgeInsets.zero,
+                //           backgroundColor: const Color(0xffE83C00)),
+                //       child: const Text(
+                //         'view',
+                //         style: TextStyle(
+                //             fontFamily: 'Mont',
+                //             fontSize: 10,
+                //             fontWeight: FontWeight.w400,
+                //             color: Colors.white),
+                //       ),
+                //     )),
               ],
             ),
           ),
           const SizedBox(height: 16),
-          const Divider(height: 1),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         Row(children: [
+           const Column(
+              spacing: 5,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Order Cost',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                     Text(
-                      //'₦85,000',
-                      "₦${dataHistory.price}",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                if (isCompleted)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade100,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Text(
-                      'Order Completed',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  )
-                else
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/market-list');
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.green.shade100,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: const Text(
-                        'View Market List',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                // ElevatedButton(
-                //   onPressed: () {
-                //     Navigator.pushNamed(context, '/market-list');
-                //   },
-                //   // style: ElevatedButton.styleFrom(
-                //   //   backgroundColor: const Color(0xFFFF4500),
-                //   //   foregroundColor: Colors.white,
-                //   //   shape: RoundedRectangleBorder(
-                //   //     borderRadius: BorderRadius.circular(8),
-                //   //   ),
-                //   //   padding: const EdgeInsets.symmetric(
-                //   //     horizontal: 16,
-                //   //     vertical: 12,
-                //   //   ),
-                //   // ),
-                //   child: const Text(
-                //     'View Market List',
-                //     style: TextStyle(
-                //       fontSize: 14,
-                //       fontWeight: FontWeight.w600,
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-          ),
+                Text('Message'),
+
+                Text('Lorem ipsum dolor sit amet consectetur. Nibh malesuada nisi massa pulvinar gravida volutpat vitae consectetur. ')
+                ],),
+            Column(children: [
+             const Text('Order Cost'),
+              Text(dataHistory.price!),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/completed.svg'),
+                  Text(dataHistory.status!)
+                ],
+              ),
+            ],)
+          ],)
         ],
       ),
     );
