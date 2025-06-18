@@ -494,25 +494,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                     ),
                   ],
                 ),
-                // SizedBox(
-                //     width: 57,
-                //     height: 29,
-                //     child: ElevatedButton(
-                //       onPressed: () {
-                //         Navigator.pushNamed(context, '/market-list');
-                //       },
-                //       style: ElevatedButton.styleFrom(
-                //           padding: EdgeInsets.zero,
-                //           backgroundColor: const Color(0xffE83C00)),
-                //       child: const Text(
-                //         'view',
-                //         style: TextStyle(
-                //             fontFamily: 'Mont',
-                //             fontSize: 10,
-                //             fontWeight: FontWeight.w400,
-                //             color: Colors.white),
-                //       ),
-                //     )),
+                
               ],
             ),
           ),
@@ -540,10 +522,12 @@ class _OrdersScreenState extends State<OrdersScreen>
                 children: [
                const Text('Order Cost'),
                 Text(dataHistory.price!),
+                
                 Row(
+                  spacing: 3,
                   children: [
-                    SvgPicture.asset('assets/completed.svg'),
-                    Text(dataHistory.status!)
+                 dataHistory.status!.toLowerCase() == 'processing' ? SvgPicture.asset('assets/processing.svg') : dataHistory.status!.toLowerCase() == 'pending' ? SvgPicture.asset('assets/rejected.svg') :SvgPicture.asset('assets/completed.svg'),
+                  dataHistory.status!.toLowerCase() == 'pending' ? const Text('rejected') : Text(dataHistory.status!)
                   ],
                 ),
               ],)

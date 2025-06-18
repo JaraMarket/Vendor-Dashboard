@@ -672,9 +672,9 @@ Future<http.Response> getCheckoutAddress() async {
     });
   }
 
-    //acceot order
-    Future<http.Response> acceptedOrders(String itemId) async {
-      //print(vendorId);
+    //accept order
+    Future<http.Response> acceptedOrders(String itemId, int vendorId) async {
+      print(vendorId);
     final url = Uri.parse('$baseUrl/vendor/orders/item/$itemId/decision');
     var token = await dataBase.getToken();
     _logRequest('POST', url);
@@ -687,7 +687,7 @@ Future<http.Response> getCheckoutAddress() async {
         },
         body: jsonEncode({
     "status": "accepted", //rejected
-    "vendor_id": 1 //1 if is admin that is accepted
+    "vendor_id": vendorId //1 if is admin that is accepted
         })
       ).timeout(
         const Duration(seconds: 10),
@@ -699,6 +699,37 @@ Future<http.Response> getCheckoutAddress() async {
       return response;
     });
   }
+
+
+//reject order
+    Future<http.Response> rejectedOrders(String itemId, int vendorId) async {
+      print(vendorId);
+    final url = Uri.parse('$baseUrl/vendor/orders/item/$itemId/decision');
+    var token = await dataBase.getToken();
+    _logRequest('POST', url);
+    return _retryRequest(() async {
+      final response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $token'
+        },
+        body: jsonEncode({
+    "status": "rejected", //rejected
+    "vendor_id": vendorId //1 if is admin that is accepted
+        })
+      ).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('Request timed out');
+        },
+      );
+      _logResponse(response);
+      return response;
+    });
+  }
+
+
 
   // Fetch ingredients
   Future<http.Response> fetchIngredients() async {

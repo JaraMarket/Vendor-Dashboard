@@ -1,13 +1,13 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:circular_countdown_timer/countdown_text_format.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
 import 'package:jara_market/screens/job_completed/controller/job_completed_controller.dart';
-import 'package:jara_market/screens/orders_screen/models/accepted_order.dart';
 import 'package:jara_market/screens/orders_screen/models/models.dart';
+import 'package:jara_market/screens/success_screen/success_screen.dart';
+import 'package:jara_market/utils/storage.dart';
 import 'package:jara_market/widgets/custom_paint.dart';
 import '../../widgets/status_bar.dart';
 
@@ -20,8 +20,12 @@ class JobCompletedScreen extends StatefulWidget {
   State<JobCompletedScreen> createState() => _JobCompletedScreenState();
 }
 
-class _JobCompletedScreenState extends State<JobCompletedScreen> {
-  
+class _JobCompletedScreenState extends State<JobCompletedScreen>  
+//with AutomaticKeepAliveClientMixin 
+{
+
+  // @override
+  // bool get wantKeepAlive => true;
 
   int _parseTimeToSeconds(String time) {
     if (time.contains(":")) {
@@ -43,6 +47,7 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
 
   @override
   Widget build(BuildContext context) {
+   // super.build(context); // Don't forget this!
     final data = ModalRoute.of(context)!.settings.arguments;
     final myData = data as Data;
     final double size = MediaQuery.of(context).size.width * 0.5;
@@ -279,9 +284,10 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                         ),
 
                         // Countdown Timer (fills up as it moves)
+                        Obx(() => 
                         CircularCountDownTimer(
-                          duration: 100,
-                          initialDuration: 0,
+                          duration: controller.remainingSeconds.value,//100,
+                          initialDuration: 0,//controller.remainingSeconds.value,
                           controller: controller.countDownController,
                           width: size,
                           height: size,
@@ -303,15 +309,15 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                           autoStart: false,
                           onStart: () {
                             debugPrint('Countdown Started');
-                            controller.isStarted.value = true;
-                            controller.isCompleted.value = false;
+                            myData.isStarted.value = true;
+                            myData.isCompleted.value = false;
                           },
                           onComplete: () {
                             debugPrint('Countdown Ended');
-                            WidgetsBinding.instance.addPostFrameCallback((_){
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
                               setState(() {
-                                controller.isStarted.value = false;
-                            controller.isCompleted.value = true;
+                                myData.isStarted.value = false;
+                                myData.isCompleted.value = true;
                               });
                             });
                           },
@@ -331,7 +337,8 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                                     totalSecondsLeft > 50 &&
                                     _fillColor != Colors.amber) {
                                   _fillColor = Colors.amber;
-                                }else if(controller.isCompleted.value && _fillColor != Colors.grey.shade500){
+                                } else if (myData.isCompleted.value &&
+                                    _fillColor != Colors.grey.shade500) {
                                   _fillColor = Colors.grey.shade500;
                                 }
                               });
@@ -340,11 +347,12 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                           },
                           timeFormatterFunction:
                               (defaultFormatterFunction, duration) {
-                            return duration.inSeconds == 0
-                                ? 'Cancelled'
+                            return myData.isRejected.value ? 'Rejected' : duration.inSeconds == 0
+                                ?  'Cancelled'
                                 : Function.apply(
                                     defaultFormatterFunction, [duration]);
                           },
+                        )
                         ),
                       ],
                     ),
@@ -352,7 +360,9 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                     //
                     //
                     // const Spacer(),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       spacing: 10,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -361,21 +371,57 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                         SizedBox(
                             width: 90,
                             child: Obx(() {
-                              return ElevatedButton(
+                              return myData.isRejected.value ? const SizedBox.shrink() : ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.zero,
-                                    backgroundColor:  controller.isCompleted.value ? Colors.grey :const Color(0xffE83C00)),
-                                onPressed: controller.isCompleted.value ? null : () {
-                                 controller.acceptOrder(myData.itemId!.toString());
-                               //  print("${myData.itemId!}, ");
-                                  //_controller.reset();
-                                  // Navigator.pushNamedAndRemoveUntil(
-                                  //   context,
-                                  //   '/dashboard',
-                                  //   (route) => false,
-                                  // );
-                                },
-                                child: controller.isStarted.value
+                                    backgroundColor:
+                                        myData.isCompleted.value
+                                            ? Colors.grey
+                                            : const Color(0xffE83C00)),
+                                onPressed: myData.isStarted.value ? (){
+                                  controller.countDownController.reset();
+                                  Navigator.of(context).push(CupertinoPageRoute(builder: (context)=> SuccessScreen(dataHistory: myData,)));
+                                } :myData.isCompleted.value
+                                    ? null
+                                    : () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              backgroundColor: Colors.white,
+                                              title: const Text('Accept Order'),
+                                              content: const Text(
+                                                  'Are you sure you want to accept this order?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.of(context)
+                                                          .pop(),
+                                                  child: const Text('Cancel',style:TextStyle(color: Colors.black),),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    // Add your accept logic here
+                                                    var vendorId =
+                                                        await dataBase
+                                                            .getUserId();
+                                                      if (!mounted) return; // Ensure widget is still in the tree
+                                                    controller.acceptOrder(
+                                                        myData.itemId!
+                                                            .toString(),
+                                                        int.parse(vendorId), myData);
+                                                   // controller.countDownController.start();
+                                                        
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('Accept',style: TextStyle(color: Colors.green),),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      },
+                                child: myData.isStarted.value
                                     ? const Text(
                                         'Deliver',
                                         style: TextStyle(
@@ -383,47 +429,84 @@ class _JobCompletedScreenState extends State<JobCompletedScreen> {
                                             fontFamily: 'Mont',
                                             fontWeight: FontWeight.w600),
                                       )
-                                    : controller.isCompleted.value ?  const Text(
-                                        'Terminated',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Mont',
-                                            fontWeight: FontWeight.w600),
-                                      ) : const Text(
-                                        'Accept',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Mont',
-                                            fontWeight: FontWeight.w600),
-                                      ),
+                                    : myData.isCompleted.value
+                                        ? const Text(
+                                            'Terminated',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'Mont',
+                                                fontWeight: FontWeight.w600),
+                                          )
+                                        : const Text(
+                                            'Accept',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'Mont',
+                                                fontWeight: FontWeight.w600),
+                                          ),
                               );
                             })),
-                        SizedBox(
-                            width: 90,
-                            child: Obx(() {
-                              return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero,
-                                    backgroundColor:  controller.isCompleted.value ? Colors.grey :const Color(0xffE83C00)),
-                                onPressed: () {
-                               //   _controller.start();
-                               
-                                  //_controller.reset();
-                                  // Navigator.pushNamedAndRemoveUntil(
-                                  //   context,
-                                  //   '/dashboard',
-                                  //   (route) => false,
-                                  // );
-                                },
-                                child:  const Text(
-                                        'Reject',
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'Mont',
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                              );
-                            })),
+                        if (!myData.isAccepted.value)
+                          SizedBox(
+                              width: 90,
+                              child: Obx(() {
+                                return myData.isRejected.value ? const SizedBox.shrink() : ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      padding: EdgeInsets.zero,
+                                      backgroundColor:
+                                          myData.isCompleted.value
+                                              ? Colors.grey
+                                              : const Color(0xffE83C00)),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          backgroundColor: Colors.white,
+                                          title: const Text('Reject Order'),
+                                          content: const Text(
+                                              'Are you sure you want to reject this order?'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () =>
+                                                  Navigator.of(context).pop(),
+                                              child: const Text('Cancel',style:TextStyle(color: Colors.black),),
+                                            ),
+                                            TextButton(
+                                              onPressed: () async {
+                                                // Add your reject logic here
+                                                var vendorId =
+                                                        await dataBase
+                                                            .getUserId();
+                                                      if (!mounted) return; // Ensure widget is still in the tree
+                                                    controller.rejectOrder(
+                                                        myData.itemId!
+                                                            .toString(),
+                                                        int.parse(vendorId), myData);
+
+                                                    setState(() {
+                                                      
+                                                    });    
+                                                    Navigator.of(context).pop();
+
+                                                
+                                              },
+                                              child: const Text('Reject',style:TextStyle(color: Colors.red),),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: const Text(
+                                    'Reject',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Mont',
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                );
+                              })),
                       ],
                     ),
                   ],

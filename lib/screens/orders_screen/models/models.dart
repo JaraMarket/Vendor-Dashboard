@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
+
 OrderModel orderModelFromJson(String x)=> OrderModel.fromJson(jsonDecode(x));
 
 
@@ -43,7 +45,11 @@ class Data {
   String? unit;
   String? imageUrl;
   String? status;
-  Vendor? vendor;
+  RxBool isAccepted;
+  RxBool isRejected;
+  RxBool isCompleted;
+  RxBool isStarted;
+  dynamic vendor;
 
   Data(
       {this.itemId,
@@ -56,9 +62,13 @@ class Data {
       this.unit,
       this.imageUrl,
       this.status,
-      this.vendor});
+      this.vendor}): isAccepted = RxBool(false),isRejected = RxBool(false), isCompleted = RxBool(false), isStarted = RxBool(false);
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json)
+      : isAccepted = RxBool(false),
+        isRejected = RxBool(false),
+        isCompleted = RxBool(false),
+        isStarted = RxBool(false) {
     itemId = json['item_id'];
     customer = json['customer'];
     orderId = json['order_id'];
