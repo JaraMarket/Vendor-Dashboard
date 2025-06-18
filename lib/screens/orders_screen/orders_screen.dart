@@ -508,20 +508,29 @@ class _OrdersScreenState extends State<OrdersScreen>
             children: [
             const Expanded(
                child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 5,
-                  children: [
-                    Text('Message'),
-               
-                    Text('Lorem ipsum dolor sit amet consectetur. Nibh malesuada nisi massa pulvinar gravida volutpat vitae consectetur. ')
-                    ],),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            spacing: 5,
+                            children: [
+                              Text('Message'),
+                              Text(
+                                  'Lorem ipsum dolor sit amet consectetur. Nibh malesuada nisi massa pulvinar gravida volutpat vitae consectetur.',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontFamily: 'Mont',
+                                      fontWeight: FontWeight.w400))
+                            ],
+                          ),
              ),
              
               Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                const Text('Order Cost'),
-                Text(dataHistory.price!),
+                Text("₦${dataHistory.price!}",style : const TextStyle(
+                                      fontSize: 20,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w600)),
                 
                 Row(
                   spacing: 3,

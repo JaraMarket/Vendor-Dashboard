@@ -24,7 +24,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final List<Widget> _tabs = [
     const HomeTab(),
     const OrdersTab(),
-    const WalletTab(),
+    // const WalletTab(),
     const ProfileTab(),
   ];
 
@@ -55,10 +55,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             activeIcon: SvgPicture.asset('assets/order_selected.svg'),
             label: 'Orders',
           ),
-        const  BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet_outlined),
-            label: 'Wallet',
-          ),
+        // const  BottomNavigationBarItem(
+        //     icon: Icon(Icons.account_balance_wallet_outlined),
+        //     label: 'Wallet',
+        //   ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset('assets/profile_unselected.svg'),
             activeIcon: SvgPicture.asset('assets/profile_selected.svg'),
