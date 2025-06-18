@@ -305,7 +305,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                       'Jara Market Store, Itam',
                       style: TextStyle(
                         fontSize: 10,
-                        fontFamily: 'Mont',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -324,7 +324,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                       child: const Text(
                         'view',
                         style: TextStyle(
-                            fontFamily: 'Mont',
+                            fontFamily: 'Poppins',
                             fontSize: 10,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
@@ -488,7 +488,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                       'Jara Market Store, Itam',
                       style: TextStyle(
                         fontSize: 10,
-                        fontFamily: 'Mont',
+                        fontFamily: 'Poppins',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -516,7 +516,7 @@ class _OrdersScreenState extends State<OrdersScreen>
                                   'Lorem ipsum dolor sit amet consectetur. Nibh malesuada nisi massa pulvinar gravida volutpat vitae consectetur.',
                                   style: TextStyle(
                                       fontSize: 10,
-                                      fontFamily: 'Mont',
+                                      fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w400))
                             ],
                           ),
