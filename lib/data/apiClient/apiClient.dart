@@ -373,6 +373,23 @@ Future<http.Response> fetchTransactions() async {
   return response;
 }
 
+
+Future<http.Response> fetchReferal() async {
+  var token = await dataBase.getToken();
+  final url = Uri.parse('$baseUrl/my-referrals');
+  _logRequest('GET', url);
+  final response = await http.get(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    },
+  );
+  _logResponse(response);
+  return response;
+}
+
 Future<http.Response> fetchTransaction(int id) async {
  // var token = await dataBase.getToken();
  final prefs = await SharedPreferences.getInstance();
