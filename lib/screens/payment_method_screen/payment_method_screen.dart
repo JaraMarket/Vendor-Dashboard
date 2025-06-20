@@ -130,7 +130,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     ),
                     PaymentMethodCards(
                       title: 'MasterCard',
-                      description: 'Lorem ipsum dolor sit amet consectetur. In integer cras neque phasellus augue ornare est nec. Elemen',
+                      description: 'Lorem ipsum dolor sit amet consectetur. In integer cras neque phasellus augue ornare est nec.',
                       icon: Image.asset(
                         'assets/Mastercard.png',
                         width: 48,
