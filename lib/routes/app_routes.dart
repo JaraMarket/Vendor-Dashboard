@@ -1,5 +1,7 @@
 import 'dart:core';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:jara_market/screens/add_money_screen/add_money_screen.dart';
+import 'package:jara_market/screens/add_money_screen/bindings/add_money_bindings.dart';
 import 'package:jara_market/screens/address_screen/address_screen.dart';
 import 'package:jara_market/screens/address_screen/bindings/address_bindings.dart';
 import 'package:jara_market/screens/bank_selection/bank_selection.dart';
@@ -79,13 +81,19 @@ class AppRoutes {
   static const String wallet = '/wallet';
   static const String splash = '/splash';
   static const String login = '/login';
-  static const referralS = '/referral_screen';
-  static const privacyPolicyScreen = '/privacy_policy_screen';
+  static const String referralS = '/referral_screen';
+  static const String addScreen = '/add-money';
+  static const String privacyPolicyScreen = '/privacy_policy_screen';
 
   static List<GetPage> pages = [
-    GetPage(name: checkoutAddressChange,
-    page: () =>  CheckoutAddressChangeScreen(),
-    bindings: [CheckoutAddressChangeBinding()]),
+    GetPage(
+        name: addScreen,
+        page: () => const AddMoneyScreen(),
+        bindings: [AddMoneyBindings()]),
+    GetPage(
+        name: checkoutAddressChange,
+        page: () => CheckoutAddressChangeScreen(),
+        bindings: [CheckoutAddressChangeBinding()]),
     GetPage(
         name: referralS,
         page: () => const ReferralScreen(),
