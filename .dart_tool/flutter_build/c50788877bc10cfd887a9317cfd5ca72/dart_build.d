@@ -1,1 +1,0 @@
- /home/danielekwere/Desktop/flutter\ projects/jaraMarket/JARA-Market-Vendor/Vendor-Dashboard/.dart_tool/flutter_build/c50788877bc10cfd887a9317cfd5ca72/dart_build_result.json: 

@@ -34,11 +34,11 @@ class _BusinessNameScreenState extends State<BusinessNameScreen> {
             children: [
               const StatusBar(),
               const SizedBox(height: 16),
-              Row(
+            const  Row(
                 children: [
-                  const CustomBackButton(),
-                  const SizedBox(width: 16),
-                  const Text(
+                   CustomBackButton(),
+                   SizedBox(width: 16),
+                   Text(
                     'Your business name',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
@@ -46,7 +46,7 @@ class _BusinessNameScreenState extends State<BusinessNameScreen> {
               ),
               const SizedBox(height: 16),
               Text(
-                'Lorem ipsum dolor sit amet consectetur. In elementum nisi et amet sapien nibh tristique ultricies.',
+                'Your business name speaks of your business identity - if you don\'t have it, you can create it now.',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey.shade600,

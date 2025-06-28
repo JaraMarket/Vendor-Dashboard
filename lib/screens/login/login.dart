@@ -251,7 +251,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 24),
                 Center(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/create-account');
+                    },
                     child: RichText(
                       text: const TextSpan(
                         text: 'New to Jara Market? ',

@@ -42,6 +42,8 @@ class OrdersController extends GetxController {
 
       if (response.statusCode == 201 || response.statusCode == 200) {
         isLoadingOrders.value = false;
+        myLog.log('Response: ${response.body}');
+        myLog.log('Status Code: ${response.statusCode}');
         orderModel = orderModelFromJson(response.body);
         availableData.value = orderModel.data!;
       } else {

@@ -19,21 +19,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Map<String, String>> _onboardingData = [
     {
-      'title': 'Lorem Ipsum',
+      'title': 'Welcome Onboard.',
       'description':
-          'Lorem ipsum dolor sit amet consectetur. Fames diam lobortis et tellus. Viverra in ut integer iaculis lectus.',
+          'Welcome to the JaraMarket Vendor App.',
       'icon': 'camera',
     },
     {
-      'title': 'Lorem Ipsum',
+      'title': 'Hey Vendor',
       'description':
-          'Lorem ipsum dolor sit amet consectetur. Fames diam lobortis et tellus. Viverra in ut integer iaculis lectus.',
+          'Sell More - More Profit.',
       'icon': 'shopping_bag',
     },
     {
-      'title': 'Lorem Ipsum',
+      'title': 'Dear Vendor',
       'description':
-          'Lorem ipsum dolor sit amet consectetur. Fames diam lobortis et tellus. Viverra in ut integer iaculis lectus.',
+          'You can qualify for jaraFund to boost your market stock and make more profit.',
       'icon': 'delivery',
     },
   ];
@@ -130,12 +130,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               padding: const EdgeInsets.all(16.0),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/create-account');
+                  Navigator.pushReplacementNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFF9800),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(

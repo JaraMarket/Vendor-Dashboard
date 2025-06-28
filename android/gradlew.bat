@@ -9,37 +9,7 @@
 if "%OS%"=="Windows_NT" setlocal
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=-Dorg.gradle.internal.http.socketTimeout=300000 -Dorg.gradle.internal.http.connectionTimeout=300000 -Dorg.gradle.java.version=11
-
-@rem Try to use a compatible Java version if available
-if exist "C:\Program Files\Java\jdk-11" (
-    set JAVA_HOME=C:\Program Files\Java\jdk-11
-    echo Using Java 11
-) else if exist "C:\Program Files\Java\jdk-17" (
-    set JAVA_HOME=C:\Program Files\Java\jdk-17
-    echo Using Java 17
-) else if exist "C:\Program Files\Eclipse Adoptium\temurin-11.jdk" (
-    set JAVA_HOME=C:\Program Files\Eclipse Adoptium\temurin-11.jdk
-    echo Using Eclipse Temurin Java 11
-) else if exist "C:\Program Files\Eclipse Foundation\jdk-11" (
-    set JAVA_HOME=C:\Program Files\Eclipse Foundation\jdk-11
-    echo Using Eclipse Java 11
-) else if exist "C:\Program Files\AdoptOpenJDK\jdk-11" (
-    set JAVA_HOME=C:\Program Files\AdoptOpenJDK\jdk-11
-    echo Using AdoptOpenJDK 11
-) else if exist "C:\Program Files\Eclipse Adoptium\jdk-11.0.20.101-hotspot" (
-    set JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-11.0.20.101-hotspot
-    echo Using Eclipse Adoptium Java 11
-) else if exist "C:\Program Files\Microsoft\jdk-11" (
-    set JAVA_HOME=C:\Program Files\Microsoft\jdk-11
-    echo Using Microsoft Java 11
-) else (
-    echo WARNING: No compatible Java version found. Gradle may fail.
-    echo Please install Java 11 or 17 for compatibility with Gradle 7.6.1
-    echo.
-    echo Please download Java 11 from: https://adoptium.net/temurin/releases/?version=11
-    echo Install it and try again.
-)
+set DEFAULT_JVM_OPTS=
 
 set DIRNAME=%~dp0
 if "%DIRNAME%" == "" set DIRNAME=.

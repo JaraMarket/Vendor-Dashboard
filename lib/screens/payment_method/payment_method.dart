@@ -61,7 +61,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     
                     // Description text
                     Text(
-                      'Lorem ipsum dolor sit amet consectetur. In elementum nisi et amet sapien nibh tristique ultricies.',
+                      'Let us know how you want to be paid. Don\'t forget, JaraMarket gets paid via bank transfer from our users.',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey.shade600,
@@ -81,11 +81,12 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                             icon: Icons.credit_card,
                             iconColor: Colors.white,
                             iconBackground: Colors.green,
-                            description: 'Lorem ipsum dolor sit a me.',
+                            description: 'Get paid in minutes.',
                             features: [
-                              'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
+                              'Enjoy fast payment',
+                              'Secure',
+                              'Get jaraloan to boost your stock',
+                              'Enjoy order preferences.',
                               // 'Lorem ipsum dolor sit a',
                               // 'Lorem ipsum dolor sit a',
                             ],
@@ -107,11 +108,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                             icon: Icons.cloud_outlined,
                             iconColor: Colors.white,
                             iconBackground: Colors.orange,
-                            description: 'Lorem ipsum dolor sit a me.',
+                            description: 'Get paid within 6 hours.',
                             features: [
-                              'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
-                              'Lorem ipsum dolor sit a',
+                              'Physical delivery record is needed.',
+                              'Payment is done within 6 hours.',
                               // 'Lorem ipsum dolor sit a',
                               // 'Lorem ipsum dolor sit a',
                             ],

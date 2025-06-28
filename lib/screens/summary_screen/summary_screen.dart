@@ -89,19 +89,19 @@ setValue();
                       const SizedBox(height: 24),
                       // _buildSectionTitle('Subscription Plan'),
                       // const SizedBox(height: 16),
-                      _buildSubscriptionPlan(),
-                      const SizedBox(height: 40),
+                      // _buildSubscriptionPlan(),
+                      // const SizedBox(height: 40),
                     ],
                   ),
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Navigator.pushNamedAndRemoveUntil(
-                  //   context,
-                  //   '/dashboard',
-                  //   (route) => false,
-                  // );
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/login',
+                    (route) => false,
+                  );
                   
                 },
                 child: const Text('Done'),
@@ -174,15 +174,15 @@ setValue();
           paymentMethod.isNotEmpty ? paymentMethod : 'N/A',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(height: 8),
-        Text(
-          'Lorem ipsum dolor sit amet consectetur. Fames diam lobortis et tellus. Viverra in ut integer iaculis lectus.',
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey.shade600,
-            height: 1.5,
-          ),
-        ),
+        // const SizedBox(height: 8),
+        // Text(
+        //   'Lorem ipsum dolor sit amet consectetur. Fames diam lobortis et tellus. Viverra in ut integer iaculis lectus.',
+        //   style: TextStyle(
+        //     fontSize: 14,
+        //     color: Colors.grey.shade600,
+        //     height: 1.5,
+        //   ),
+        // ),
       ],
     );
   }

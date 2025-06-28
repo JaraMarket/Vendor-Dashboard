@@ -71,7 +71,7 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Lorem ipsum dolor sit amet consectetur. In met conse',
+                        'Select what you sell below, and don\'t pick what you are not selling. you can pick more than one class.',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey.shade600,

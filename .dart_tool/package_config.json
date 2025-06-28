@@ -195,7 +195,7 @@
     },
     {
       "name": "flutter_launcher_icons",
-      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/flutter_launcher_icons-0.14.3",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/flutter_launcher_icons-0.14.4",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -316,6 +316,12 @@
     {
       "name": "json_annotation",
       "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/json_annotation-4.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "launcher_name",
+      "rootUri": "file:///home/danielekwere/.pub-cache/hosted/pub.dev/launcher_name-1.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -668,7 +674,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-06-20T12:42:14.083742Z",
+  "generated": "2025-06-28T21:30:07.894897Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
   "flutterRoot": "file:///home/danielekwere/snap/flutter/common/flutter",

@@ -46,7 +46,7 @@ class _ShopSizeScreenState extends State<ShopSizeScreen> {
               ),
               const SizedBox(height: 16),
               Text(
-                'Lorem ipsum dolor sit amet consectetur. In elementum nisi et amet sapien nibh tristique ultricies.',
+                'Kindly select your actual business size below.',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey.shade600,

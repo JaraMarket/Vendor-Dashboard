@@ -50,6 +50,7 @@ class Data {
   RxBool isCompleted;
   RxBool isStarted;
   dynamic vendor;
+  
 
   Data(
       {this.itemId,

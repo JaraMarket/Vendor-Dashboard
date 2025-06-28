@@ -49,7 +49,7 @@ class _AddressScreenState extends State<AddressScreen> {
               ),
               const SizedBox(height: 16),
               Text(
-                'Lorem ipsum dolor sit amet consectetur. In elementum nisi et amet sapien nibh tristique ultricies.',
+                'Tell us where your business is located. E.g Akpan Andem Market uyo, shop 3 block 34.',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey.shade600,
